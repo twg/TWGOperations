@@ -1,0 +1,25 @@
+{
+  "name": "TWGOperations",
+  "version": "0.1.0",
+  "summary": "A short description of TWGOperations.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/TWGOperations",
+  "license": "MIT",
+  "authors": {
+    "Nicholas Kuhne": "njkuhne@me.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/TWGOperations.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "TWGOperations": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'TWGOperations_Example', :exclusive => true do
+  pod "TWGOperations", :path => "../"
+end
+
+target 'TWGOperations_Tests', :exclusive => true do
+  pod "TWGOperations", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
