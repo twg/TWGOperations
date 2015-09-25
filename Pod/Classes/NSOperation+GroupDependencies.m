@@ -12,7 +12,8 @@
 
 - (void) addDependencies:(NSArray *)operations
 {
-    for (NSOperation *operation in operations) {
+    for (NSOperation *operation in operations)
+    {
         [self addDependency:operation];
     }
 }

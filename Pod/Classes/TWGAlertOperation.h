@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UIAlertView *alertView;
 
-+ (TWGAlertOperation *)alertOperationWithTitle:(NSString *)title andMessage:(NSString *)message;
++ (instancetype)alertOperationWithTitle:(NSString *)title andMessage:(NSString *)message;
 
 
 /*
@@ -35,6 +35,6 @@
 @property (nonatomic, copy) NSString *message;
 
 //protected
-- (void) setupAlert;
+- (void) configureAlert;
 
 @end

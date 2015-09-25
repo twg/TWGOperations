@@ -7,15 +7,11 @@
 //
 
 #import "TWGAlertOperation.h"
+#import "TWGRetryDecisionDelegate.h"
 
-typedef NS_ENUM(NSUInteger, TWGRetryAlertOperationResult) {
-    TWGRetryAlertOperationResultCancel,
-    TWGRetryAlertOperationResultRetry,
-};
+@interface TWGRetryAlertOperation : TWGAlertOperation <TWGRetryDecisionOperation>
 
-@interface TWGRetryAlertOperation : TWGAlertOperation
-
-@property (nonatomic, assign) TWGRetryAlertOperationResult result;
+@property (nonatomic, weak) id<TWGRetryDecisionDelegate>delegate;
 
 
 /*

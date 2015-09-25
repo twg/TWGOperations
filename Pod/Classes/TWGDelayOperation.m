@@ -1,0 +1,28 @@
+//
+//  TWGDelayOperation.m
+//  Pods
+//
+//  Created by Nicholas Kuhne on 2015-09-25.
+//
+//
+
+#import "TWGDelayOperation.h"
+
+@implementation TWGDelayOperation
+
+- (void)execute
+{
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf finish];
+    });
+}
+
++ (instancetype)delayOperationWithDelay:(NSTimeInterval)delay
+{
+    TWGDelayOperation *delayOperation = [[[self class] alloc] init];
+    delayOperation.delay = delay;
+    return delayOperation;
+}
+
+@end

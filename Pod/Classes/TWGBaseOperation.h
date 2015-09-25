@@ -17,15 +17,26 @@ typedef NS_ENUM(NSUInteger, TWGOperationState) {
     TWGOperationStateCanceled
 };
 
-@interface TWGBaseOperation : NSOperation
+@interface TWGBaseOperation : NSOperation <NSCopying>
 
+/*
+ state not included in copy:
+ */
 @property (nonatomic, assign) TWGOperationState state;
+
+
+@property (nonatomic, strong) id result;
+@property (nonatomic, strong) NSError *error;
+
+/*
+ called before NSOperation completionBlock
+ */
+@property (copy) void (^operationCompletionBlock)(id result, NSError *error);
 
 /*
  subclasses override this for execution
  */
 - (void)execute;
-
 
 /*
  subclasses must call this to complete

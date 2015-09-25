@@ -7,6 +7,7 @@
 //
 
 #import "TWGBaseOperation.h"
+#import "NSOperation+GroupDependencies.h"
 
 @interface TWGBaseOperation ()
 
@@ -48,6 +49,10 @@
     [self execute];
     
     dispatch_semaphore_wait(self.operationLock, DISPATCH_TIME_FOREVER);
+    
+    if(self.operationCompletionBlock) {
+        self.operationCompletionBlock(self.result, self.error);
+    }
 }
 
 static dispatch_queue_t unblockingQueue = NULL;
@@ -59,6 +64,19 @@ static dispatch_queue_t unblockingQueue = NULL;
     });
     
     return unblockingQueue;
+}
+
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    TWGBaseOperation *operation = [[[self class] alloc] init];
+    
+    operation.result = self.result;
+    operation.error = self.error;
+    operation.operationCompletionBlock = self.operationCompletionBlock;
+    
+    return operation;
 }
 
 @end

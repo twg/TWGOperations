@@ -13,8 +13,6 @@
 
 @property (nonatomic, strong, readwrite) NSOperationQueue *operationQueue;
 
-@property (nonatomic, strong) NSBlockOperation *completionOperation;
-
 @end
 
 @implementation TWGGroupOperation
@@ -25,22 +23,17 @@
 {
     [self setupOperations];
     
-    self.completionOperation = [NSBlockOperation blockOperationWithBlock:^{
-        [self finish];
+    __weak typeof(self) weakSelf = self;
+    NSBlockOperation *completionOperation = [NSBlockOperation blockOperationWithBlock:^{
+        [weakSelf finish];
     }];
     
     if([self.operations count]) {
-        [self.completionOperation addDependencies:self.operations];
+        [completionOperation addDependencies:self.operations];
         [self.operationQueue addOperations:self.operations waitUntilFinished:NO];
     }
     
-    [self.operationQueue addOperation:self.completionOperation];
-}
-
-- (void)finish
-{
-    self.completionOperation = nil;
-    [super finish];
+    [self.operationQueue addOperation:completionOperation];
 }
 
 - (void)setSerial:(BOOL)serial

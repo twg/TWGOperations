@@ -14,8 +14,6 @@
 
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
-@property (nonatomic, strong) TWGGroupOperation *groupOP;
-
 @end
 
 @implementation TWGViewController
@@ -23,22 +21,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    TWGGroupOperation *groupOP = [[TWGGroupOperation alloc] init];
-    groupOP.serial = YES;
+
+    TWGRetryingOperation *operation = [[TWGRetryingOperation alloc] init];
     
-    //self.groupOP = groupOP;
-    
-    [groupOP setCompletionBlock:^{
-        NSLog(@"Completed Both Alerts");
+    [operation setOperationCompletionBlock:^(id result, NSError *error) {
+        NSLog(@"Fin");
     }];
     
-    TWGAlertOperation *alert1 = [TWGAlertOperation alertOperationWithTitle:@"Alert 1" andMessage:@"This is alert 1"];
-    TWGAlertOperation *alert2 = [TWGAlertOperation alertOperationWithTitle:@"Alert 2" andMessage:@"This is alert 2"];
+    TWGRetryAlertOperation *retryAlert = [TWGRetryAlertOperation alertOperationWithTitle:@"Retry Alert" andMessage:@"Do you want to retry?"];
+    operation.retryOperation = retryAlert;
     
-    groupOP.operations = @[alert1, alert2];
-    
-    [self.operationQueue addOperation:groupOP];
+    [self.operationQueue addOperation:operation];
 }
 
 

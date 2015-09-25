@@ -10,6 +10,8 @@
 
 @interface TWGGroupOperation : TWGBaseOperation
 
+@property (nonatomic, strong, readonly) NSOperationQueue *operationQueue;
+
 @property (nonatomic, assign, getter=isSerial) BOOL serial;
 
 @property (nonatomic, strong) NSArray *operations;

@@ -8,22 +8,22 @@
 
 #import "TWGRetryAlertOperation.h"
 
-@interface TWGRetryAlertOperation ()
+NSString *const TWGRetryAlertOperationResultCancel  = @"TWGRetryAlertOperationResultCancel";
+NSString *const TWGRetryAlertOperationResultRetry   = @"TWGRetryAlertOperationResultRetry";
 
+@interface TWGRetryAlertOperation ()
 @end
 
 
 @implementation TWGRetryAlertOperation
 
-- (void)execute
+- (void)configureAlert
 {
     self.alertView = [[UIAlertView alloc] initWithTitle:self.title
                                                 message:self.message
                                                delegate:self
-                                      cancelButtonTitle:self.retryButtonTitle
-                                      otherButtonTitles:self.cancelButtonTitle, nil];
-    
-    [self.alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+                                      cancelButtonTitle:self.cancelButtonTitle
+                                      otherButtonTitles:self.retryButtonTitle, nil];
 }
 
 - (NSString *)retryButtonTitle
@@ -46,18 +46,23 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex) {
-        case 0:
-            self.result = TWGRetryAlertOperationResultRetry;
-            break;
-        case 1:
-        default:
-            self.result = TWGRetryAlertOperationResultCancel;
-            break;
+    if([self.delegate respondsToSelector:@selector(retryDecisionDelegateDidDecide:)]) {
+        [self.delegate retryDecisionDelegateDidDecide:(buttonIndex == 1)];
     }
     
     [self finish];
 }
 
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    TWGRetryAlertOperation *copyOperation = [super copyWithZone:zone];
+    
+    copyOperation.retryButtonTitle = self.retryButtonTitle;
+    copyOperation.cancelButtonTitle = self.cancelButtonTitle;
+    
+    return copyOperation;
+}
 
 @end

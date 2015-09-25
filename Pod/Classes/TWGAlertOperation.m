@@ -16,11 +16,11 @@
 
 - (void)execute
 {
-    [self setupAlert];
+    [self configureAlert];
     [self.alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
 }
 
-- (void)setupAlert
+- (void)configureAlert
 {
     self.alertView = [[UIAlertView alloc] initWithTitle:self.title
                                                 message:self.message
@@ -38,7 +38,7 @@
 }
 
 
-+ (TWGAlertOperation *)alertOperationWithTitle:(NSString *)title andMessage:(NSString *)message
++ (instancetype)alertOperationWithTitle:(NSString *)title andMessage:(NSString *)message
 {
     TWGAlertOperation *alertOperation = [[[self class] alloc] init];
     alertOperation.title = title;
@@ -52,6 +52,19 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     [self finish];
+}
+
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    TWGAlertOperation *operation = [super copyWithZone:zone];
+    
+    operation.title = self.title;
+    operation.message = self.message;
+    operation.confirmButtonTitle = self.confirmButtonTitle;
+    
+    return operation;
 }
 
 
