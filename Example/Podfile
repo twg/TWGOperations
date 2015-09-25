@@ -10,4 +10,5 @@ target 'TWGOperations_Tests', :exclusive => true do
 
   pod 'Specta'
   pod 'Expecta'
+  pod 'OCMock'
 end

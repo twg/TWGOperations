@@ -8,7 +8,13 @@
 
 #import "TWGViewController.h"
 
+#import <TWGOperations/Pods-TWGOperations_Example-TWGOperations-umbrella.h>
+
 @interface TWGViewController ()
+
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
+
+@property (nonatomic, strong) TWGGroupOperation *groupOP;
 
 @end
 
@@ -17,13 +23,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    TWGGroupOperation *groupOP = [[TWGGroupOperation alloc] init];
+    groupOP.serial = YES;
+    
+    //self.groupOP = groupOP;
+    
+    [groupOP setCompletionBlock:^{
+        NSLog(@"Completed Both Alerts");
+    }];
+    
+    TWGAlertOperation *alert1 = [TWGAlertOperation alertOperationWithTitle:@"Alert 1" andMessage:@"This is alert 1"];
+    TWGAlertOperation *alert2 = [TWGAlertOperation alertOperationWithTitle:@"Alert 2" andMessage:@"This is alert 2"];
+    
+    groupOP.operations = @[alert1, alert2];
+    
+    [self.operationQueue addOperation:groupOP];
 }
 
-- (void)didReceiveMemoryWarning
+
+- (NSOperationQueue *)operationQueue
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (_operationQueue == nil) {
+        _operationQueue = [[NSOperationQueue alloc] init];
+    }
+    return _operationQueue;
 }
+
 
 @end

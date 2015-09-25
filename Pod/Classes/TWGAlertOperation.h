@@ -9,9 +9,9 @@
 #import "TWGBaseOperation.h"
 #import <UIKit/UIKit.h>
 
-@interface TWGAlertOperation : TWGBaseOperation
+@interface TWGAlertOperation : TWGBaseOperation <UIAlertViewDelegate>
 
-@property (nonatomic, strong, readonly) UIAlertView *alertView;
+@property (nonatomic, strong) UIAlertView *alertView;
 
 + (TWGAlertOperation *)alertOperationWithTitle:(NSString *)title andMessage:(NSString *)message;
 
@@ -20,7 +20,7 @@
  Alert cancel button text
  Default "Okay"
  */
-@property (nonatomic, copy) NSString *cancelButtonTitle;
+@property (nonatomic, copy) NSString *confirmButtonTitle;
 
 /*
  Alert title
@@ -33,5 +33,8 @@
  Required
  */
 @property (nonatomic, copy) NSString *message;
+
+//protected
+- (void) setupAlert;
 
 @end

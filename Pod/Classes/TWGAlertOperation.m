@@ -8,9 +8,7 @@
 
 #import "TWGAlertOperation.h"
 
-@interface TWGAlertOperation () <UIAlertViewDelegate>
-
-@property (nonatomic, strong, readwrite) UIAlertView *alertView;
+@interface TWGAlertOperation ()
 
 @end
 
@@ -18,27 +16,31 @@
 
 - (void)execute
 {
-    self.alertView = [[UIAlertView alloc] initWithTitle:self.title
-                                                message:self.message
-                                               delegate:self
-                                      cancelButtonTitle:self.cancelButtonTitle
-                                      otherButtonTitles:nil];
-    
+    [self setupAlert];
     [self.alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
 }
 
-- (NSString *)cancelButtonTitle
+- (void)setupAlert
 {
-    if(_cancelButtonTitle == nil) {
-        _cancelButtonTitle = @"Okay";
+    self.alertView = [[UIAlertView alloc] initWithTitle:self.title
+                                                message:self.message
+                                               delegate:self
+                                      cancelButtonTitle:self.confirmButtonTitle
+                                      otherButtonTitles:nil];
+}
+
+- (NSString *)confirmButtonTitle
+{
+    if(_confirmButtonTitle == nil) {
+        _confirmButtonTitle = @"Okay";
     }
-    return _cancelButtonTitle;
+    return _confirmButtonTitle;
 }
 
 
 + (TWGAlertOperation *)alertOperationWithTitle:(NSString *)title andMessage:(NSString *)message
 {
-    TWGAlertOperation *alertOperation = [[TWGAlertOperation alloc] init];
+    TWGAlertOperation *alertOperation = [[[self class] alloc] init];
     alertOperation.title = title;
     alertOperation.message = message;
     
