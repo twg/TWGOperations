@@ -14,12 +14,10 @@
 
 @property (nonatomic, assign, getter=isSerial) BOOL serial;
 
-@property (nonatomic, strong) NSArray *operations;
-
 
 /*
  Subclasses override this
  */
-- (void) setupOperations;
+- (NSArray<NSOperation *> *) operations;
 
 @end

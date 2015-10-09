@@ -1,6 +1,0 @@
-framework module TWGOperations {
-  umbrella header "Pods-TWGOperations_Example-TWGOperations-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -8,7 +8,7 @@
 
 #import "TWGViewController.h"
 
-#import <TWGOperations/Pods-TWGOperations_Example-TWGOperations-umbrella.h>
+#import <TWGOperations/TWGOperations-umbrella.h>
 
 @interface TWGViewController ()
 

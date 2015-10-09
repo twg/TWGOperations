@@ -17,11 +17,14 @@
 
 @implementation TWGGroupOperation
 
-- (void)setupOperations {}
+- (NSArray<NSOperation *> *)operations
+{
+    return nil;
+}
 
 - (void)execute
 {
-    [self setupOperations];
+    NSArray *operations = [self operations];
     
     __weak typeof(self) weakSelf = self;
     NSBlockOperation *completionOperation = [NSBlockOperation blockOperationWithBlock:^{
@@ -29,8 +32,8 @@
     }];
     
     if([self.operations count]) {
-        [completionOperation addDependencies:self.operations];
-        [self.operationQueue addOperations:self.operations waitUntilFinished:NO];
+        [completionOperation addDependencies:operations];
+        [self.operationQueue addOperations:operations waitUntilFinished:NO];
     }
     
     [self.operationQueue addOperation:completionOperation];

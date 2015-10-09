@@ -23,10 +23,11 @@
 - (void)setupOperation {}
 - (void)setupRetryAlertOperation {}
 
-- (void)setupOperations
+- (NSArray<NSOperation *> *)operations
 {
     [self setupOperation];
-    self.operations = @[self.operation];
+    
+    return @[self.operation];
 }
 
 - (void)finish
