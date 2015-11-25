@@ -10,10 +10,9 @@
 
 @implementation NSOperation (Dependencies)
 
-- (void) addDependencies:(NSArray *)operations
+- (void) addDependencies:(NSArray<NSOperation *> *)operations
 {
-    for (NSOperation *operation in operations)
-    {
+    for (NSOperation *operation in operations) {
         [self addDependency:operation];
     }
 }

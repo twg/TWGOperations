@@ -10,28 +10,83 @@
 
 #import <TWGOperations/TWGOperations-umbrella.h>
 
-@interface TWGViewController ()
+#import "GoogleImageDownloadOperation.h"
+#import "GoogleImageViewLoadOperation.h"
+#import "ImageViewSearchOperation.h"
 
+@interface TWGViewController ()
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @end
 
 @implementation TWGViewController
 
-- (void)viewDidLoad
+/*
+ *
+ *
+ *
+ Example 1
+ *
+ *
+ *
+ */
+- (IBAction)example1Action:(id)sender
 {
-    [super viewDidLoad];
-
-    TWGRetryingOperation *operation = [[TWGRetryingOperation alloc] init];
+    GoogleImageDownloadOperation *downloadOperation =
+        [GoogleImageDownloadOperation imageDownloadOperationWithSearchString:@"Sparkles"];
     
-    [operation setOperationCompletionBlock:^(id result, NSError *error) {
-        NSLog(@"Fin");
+    __weak typeof(self) weakSelf = self;
+    
+    [downloadOperation setOperationCompletionBlock:^(id result, NSError *error) {
+        
+        if([result isKindOfClass:[UIImage class]]) {
+            UIImage *image = (UIImage *)result;
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                weakSelf.imageView.image = image;
+            });
+        }
+        
     }];
     
-    TWGRetryAlertOperation *retryAlert = [TWGRetryAlertOperation alertOperationWithTitle:@"Retry Alert" andMessage:@"Do you want to retry?"];
-    operation.retryOperation = retryAlert;
+    [self.operationQueue addOperation:downloadOperation];
+}
+
+
+
+/*
+ *
+ *
+ *
+ Example 2
+ *
+ *
+ *
+ */
+- (IBAction)example2Action:(id)sender
+{
+    GoogleImageViewLoadOperation *loadOperation =
+        [GoogleImageViewLoadOperation loadOperationWithSearchString:@"DiZazzo" andImageView:self.imageView];
     
-    [self.operationQueue addOperation:operation];
+    [self.operationQueue addOperation:loadOperation];
+    
+}
+
+
+
+/*
+ *
+ *
+ *
+ Example 3
+ *
+ *
+ *
+ */
+- (IBAction)example3Action:(id)sender
+{
+    [self.operationQueue addOperation:[ImageViewSearchOperation imageViewSearchOperationWithImageView:self.imageView]];
 }
 
 
@@ -42,6 +97,5 @@
     }
     return _operationQueue;
 }
-
 
 @end

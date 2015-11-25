@@ -12,28 +12,30 @@
 @interface TWGGroupOperation ()
 
 @property (nonatomic, strong, readwrite) NSOperationQueue *operationQueue;
+@property (nonatomic, strong) NSArray<NSOperation*>* operations;
 
 @end
 
 @implementation TWGGroupOperation
 
-- (NSArray<NSOperation *> *)operations
+- (instancetype)initWithOperations:(NSArray<NSOperation *> *)operations
 {
-    return nil;
+    if(self = [super init]) {
+        self.operations = operations;
+    }
+    return self;
 }
 
 - (void)execute
 {
-    NSArray *operations = [self operations];
-    
     __weak typeof(self) weakSelf = self;
     NSBlockOperation *completionOperation = [NSBlockOperation blockOperationWithBlock:^{
         [weakSelf finish];
     }];
     
     if([self.operations count]) {
-        [completionOperation addDependencies:operations];
-        [self.operationQueue addOperations:operations waitUntilFinished:NO];
+        [completionOperation addDependencies:self.operations];
+        [self.operationQueue addOperations:self.operations waitUntilFinished:NO];
     }
     
     [self.operationQueue addOperation:completionOperation];
@@ -45,8 +47,8 @@
         _serial = serial;
     }
     
-    NSInteger maxConcurrentOperaitons = (serial)? 1 : NSOperationQueueDefaultMaxConcurrentOperationCount;
-    [self.operationQueue setMaxConcurrentOperationCount:maxConcurrentOperaitons];
+    NSInteger maxConcurrentOperations = (serial)? 1 : NSOperationQueueDefaultMaxConcurrentOperationCount;
+    [self.operationQueue setMaxConcurrentOperationCount:maxConcurrentOperations];
 }
 
 - (NSOperationQueue *)operationQueue

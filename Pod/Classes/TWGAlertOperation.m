@@ -8,9 +8,6 @@
 
 #import "TWGAlertOperation.h"
 
-@interface TWGAlertOperation ()
-
-@end
 
 @implementation TWGAlertOperation
 
@@ -51,6 +48,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    self.result = @(buttonIndex);
     [self finish];
 }
 

@@ -14,10 +14,6 @@
 
 @property (nonatomic, assign, getter=isSerial) BOOL serial;
 
-
-/*
- Subclasses override this
- */
-- (NSArray<NSOperation *> *) operations;
+- (instancetype) initWithOperations:(NSArray<NSOperation*>*)operations;
 
 @end

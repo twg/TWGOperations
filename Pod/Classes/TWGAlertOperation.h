@@ -37,4 +37,10 @@
 //protected
 - (void) configureAlert;
 
+/*
+ TWGAlertOperation uses:
+ - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+ to capture result and finish;
+ */
+
 @end

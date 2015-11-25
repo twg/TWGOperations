@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7791F793557CAF801A01BD8B"
+               BlueprintIdentifier = "30B07CF83464867BCB3B7457"
                BuildableName = "TWGOperations.framework"
                BlueprintName = "TWGOperations"
                ReferencedContainer = "container:Pods.xcodeproj">

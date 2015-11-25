@@ -10,6 +10,6 @@
 
 @interface NSOperation (GroupDependencies)
 
-- (void) addDependencies:(NSArray *)operations;
+- (void) addDependencies:(NSArray<NSOperation *> *)operations;
 
 @end
