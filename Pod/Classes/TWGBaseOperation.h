@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TWGBaseOperation : NSOperation <NSCopying>
+@class TWGBaseOperation;
 
-@property (nonatomic, strong) id result;
-@property (nonatomic, strong) NSError *error;
+@protocol TWGOperationDelegate <NSObject>
 
-/*
- called before NSOperation completionBlock
- */
-@property (copy) void (^operationCompletionBlock)(id result, NSError *error);
+- (void) operation:(TWGBaseOperation *)operation didCompleteWithResult:(id)result;
+- (void) operation:(TWGBaseOperation *)operation didFailWithError:(NSError*)error;
+
+@end
+
+@interface TWGBaseOperation : NSOperation
+
+@property (nonatomic, strong) id<TWGOperationDelegate>delegate;
 
 /*
  subclasses override this for execution
@@ -27,5 +30,11 @@
  subclasses must call this to complete
  */
 - (void)finish;
+
+/*
+ convenience completion
+ */
+- (void) finishWithResult:(id)result;
+- (void) finishWithError:(NSError *)error;
 
 @end

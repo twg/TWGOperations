@@ -14,7 +14,7 @@
 #import "GoogleImageViewLoadOperation.h"
 #import "ImageViewSearchOperation.h"
 
-@interface TWGViewController ()
+@interface TWGViewController () <TWGOperationDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
@@ -35,23 +35,10 @@
 {
     GoogleImageDownloadOperation *downloadOperation =
         [GoogleImageDownloadOperation imageDownloadOperationWithSearchString:@"Sparkles"];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [downloadOperation setOperationCompletionBlock:^(id result, NSError *error) {
-        
-        if([result isKindOfClass:[UIImage class]]) {
-            UIImage *image = (UIImage *)result;
-            
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                weakSelf.imageView.image = image;
-            });
-        }
-        
-    }];
-    
+    downloadOperation.delegate = self;
     [self.operationQueue addOperation:downloadOperation];
 }
+
 
 
 
@@ -68,10 +55,12 @@
 {
     GoogleImageViewLoadOperation *loadOperation =
         [GoogleImageViewLoadOperation loadOperationWithSearchString:@"DiZazzo" andImageView:self.imageView];
+    loadOperation.delegate = self;
     
     [self.operationQueue addOperation:loadOperation];
     
 }
+
 
 
 
@@ -86,7 +75,30 @@
  */
 - (IBAction)example3Action:(id)sender
 {
-    [self.operationQueue addOperation:[ImageViewSearchOperation imageViewSearchOperationWithImageView:self.imageView]];
+    ImageViewSearchOperation *operation = [ImageViewSearchOperation imageViewSearchOperationWithImageView:self.imageView];
+    operation.delegate = self;
+    [self.operationQueue addOperation:operation];
+}
+
+
+#pragma mark TWGOperationDelegate
+
+- (void)operation:(TWGBaseOperation *)operation didCompleteWithResult:(id)result
+{
+    if([operation isKindOfClass:[GoogleImageDownloadOperation class]]) { // Example 1
+        if([result isKindOfClass:[UIImage class]]) {
+            UIImage *image = (UIImage *)result;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.imageView.image = image;
+            });
+        }
+    }
+}
+
+- (void)operation:(TWGBaseOperation *)operation didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", error);
 }
 
 

@@ -10,7 +10,7 @@
 #import "GatherSearchStringOperation.h"
 #import "GoogleImageViewLoadOperation.h"
 
-@interface ImageViewSearchOperation ()
+@interface ImageViewSearchOperation () <TWGOperationDelegate>
 
 @property (nonatomic, strong) GatherSearchStringOperation *gatherOperation;
 @property (nonatomic, strong) GoogleImageViewLoadOperation *loadOperation;
@@ -21,29 +21,18 @@
 
 - (instancetype)init
 {
-    self.gatherOperation = [GatherSearchStringOperation gatherSearchStringOperation];
-    self.loadOperation = [[GoogleImageViewLoadOperation alloc] init];
+    GatherSearchStringOperation *gatherOperation = [GatherSearchStringOperation gatherSearchStringOperation];
+    GoogleImageViewLoadOperation *loadOperation = [[GoogleImageViewLoadOperation alloc] init];
     
-    __weak typeof(self) weakSelf = self;
+    [loadOperation addDependency:gatherOperation];
     
-    [self.gatherOperation setOperationCompletionBlock:^(id result, NSError *error) {
-        
-        if([result isKindOfClass:[NSString class]]) {
-            NSString *searchString = (NSString *)result;
-            weakSelf.loadOperation.searchString = searchString;
-        }
-        else if (error) {
-            weakSelf.error = error;
-            [weakSelf finish];
-        }
-        
-    }];
-    
-    [self.loadOperation addDependency:self.gatherOperation];
-    
-    self = [super initWithOperations:@[self.gatherOperation, self.loadOperation]];
+    self = [super initWithOperations:@[gatherOperation, loadOperation]];
     if(self) {
+        self.gatherOperation = gatherOperation;
+        self.gatherOperation.delegate = self;
         
+        self.loadOperation = loadOperation;
+        self.loadOperation.delegate = self;
     }
     return self;
 }
@@ -59,6 +48,26 @@
     ImageViewSearchOperation *searchOperation = [[[self class] alloc] init];
     searchOperation.imageView = imageView;
     return searchOperation;
+}
+
+#pragma mark TWGOperationDelegate
+
+- (void)operation:(TWGBaseOperation *)operation didCompleteWithResult:(id)result
+{
+    if(operation == self.gatherOperation) {
+        if([result isKindOfClass:[NSString class]]) {
+            NSString *searchString = (NSString *)result;
+            self.loadOperation.searchString = searchString;
+        }
+    }
+    else if (operation == self.loadOperation) {
+        [self finishWithResult:nil];
+    }
+}
+
+- (void)operation:(TWGBaseOperation *)operation didFailWithError:(NSError *)error
+{
+    [self finishWithError:error];
 }
 
 @end

@@ -24,7 +24,6 @@ static NSString *kIsFinishedKey = @"isFinished";
 
 // iOS <= 7
 - (BOOL)isConcurrent { return NO; }
-
 // iOS >= 8
 - (BOOL)isAsynchronous { return YES; }
 
@@ -36,14 +35,13 @@ static NSString *kIsFinishedKey = @"isFinished";
     return _finished;
 }
 
-- (void)execute {}
+- (void)execute
+{
+    [self finish];
+}
 
 - (void)finish
 {
-    if(self.operationCompletionBlock) {
-        self.operationCompletionBlock(self.result, self.error);
-    }
-    
     [self willChangeValueForKey:kIsExecutingKey];
     _executing = NO;
     [self didChangeValueForKey:kIsExecutingKey];
@@ -61,17 +59,34 @@ static NSString *kIsFinishedKey = @"isFinished";
     [self execute];
 }
 
-#pragma mark NSCopying
+#pragma mark convenience completions
 
-- (id)copyWithZone:(NSZone *)zone
+- (void)finishWithResult:(id)result
 {
-    TWGBaseOperation *operation = [[[self class] alloc] init];
-    
-    operation.result = self.result;
-    operation.error = self.error;
-    operation.operationCompletionBlock = self.operationCompletionBlock;
-    
-    return operation;
+    [self informDelegateOfCompletionWithResult:result];
+    [self finish];
+}
+
+- (void)finishWithError:(NSError *)error
+{
+    [self informDelegateOfFailureWithError:error];
+    [self finish];
+}
+
+#pragma mark delegate
+
+- (void) informDelegateOfCompletionWithResult:(id)result
+{
+    if([self.delegate respondsToSelector:@selector(operation:didCompleteWithResult:)]) {
+        [self.delegate operation:self didCompleteWithResult:result];
+    }
+}
+
+- (void) informDelegateOfFailureWithError:(NSError *)error
+{
+    if([self.delegate respondsToSelector:@selector(operation:didFailWithError:)]) {
+        [self.delegate operation:self didFailWithError:error];
+    }
 }
 
 @end

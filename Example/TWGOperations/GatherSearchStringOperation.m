@@ -27,8 +27,7 @@
 {
     UITextField *textField = [self.alertView textFieldAtIndex:0];
     [textField resignFirstResponder];
-    self.result = textField.text;
-    [self finish];
+    [self finishWithResult:textField.text];
 }
 
 @end

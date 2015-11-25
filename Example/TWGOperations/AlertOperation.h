@@ -1,15 +1,15 @@
 //
-//  TWGAlertOperation.h
-//  Pods
+//  AlertOperation.h
+//  TWGOperations
 //
-//  Created by Nicholas Kuhne on 2015-09-22.
-//
+//  Created by Nicholas Kuhne on 2015-11-25.
+//  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import "TWGBaseOperation.h"
+#import <TWGOperations/TWGOperations-umbrella.h>
 #import <UIKit/UIKit.h>
 
-@interface TWGAlertOperation : TWGBaseOperation <UIAlertViewDelegate>
+@interface AlertOperation : TWGBaseOperation <UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIAlertView *alertView;
 
@@ -42,5 +42,6 @@
  - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
  to capture result and finish;
  */
+
 
 @end

@@ -1,15 +1,14 @@
 //
-//  TWGAlertOperation.m
-//  Pods
+//  AlertOperation.m
+//  TWGOperations
 //
-//  Created by Nicholas Kuhne on 2015-09-22.
-//
+//  Created by Nicholas Kuhne on 2015-11-25.
+//  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import "TWGAlertOperation.h"
+#import "AlertOperation.h"
 
-
-@implementation TWGAlertOperation
+@implementation AlertOperation
 
 - (void)execute
 {
@@ -37,7 +36,7 @@
 
 + (instancetype)alertOperationWithTitle:(NSString *)title andMessage:(NSString *)message
 {
-    TWGAlertOperation *alertOperation = [[[self class] alloc] init];
+    AlertOperation *alertOperation = [[[self class] alloc] init];
     alertOperation.title = title;
     alertOperation.message = message;
     
@@ -48,21 +47,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    self.result = @(buttonIndex);
-    [self finish];
-}
-
-#pragma mark NSCopying
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    TWGAlertOperation *operation = [super copyWithZone:zone];
-    
-    operation.title = self.title;
-    operation.message = self.message;
-    operation.confirmButtonTitle = self.confirmButtonTitle;
-    
-    return operation;
+    [self finishWithResult:@(buttonIndex)];
 }
 
 

@@ -10,7 +10,7 @@
 #import "ImageViewSetOperation.h"
 #import "GoogleImageDownloadOperation.h"
 
-@interface GoogleImageViewLoadOperation ()
+@interface GoogleImageViewLoadOperation () <TWGOperationDelegate>
 
 @property (nonatomic, strong) GoogleImageDownloadOperation *downloadOperation;
 @property (nonatomic, strong) ImageViewSetOperation *setOperation;
@@ -21,29 +21,18 @@
 
 - (instancetype)init
 {
-    self.downloadOperation = [[GoogleImageDownloadOperation alloc] init];
-    self.setOperation = [[ImageViewSetOperation alloc] init];
+    GoogleImageDownloadOperation *downloadOperation = [[GoogleImageDownloadOperation alloc] init];
+    ImageViewSetOperation *setOperation = [[ImageViewSetOperation alloc] init];
     
-    __weak typeof(self) weakSelf = self;
+    [setOperation addDependency:downloadOperation];
     
-    [self.downloadOperation setOperationCompletionBlock:^(id data, NSError *error) {
-        
-        if([data isKindOfClass:[UIImage class]]) {
-            UIImage *image = (UIImage *)data;
-            weakSelf.setOperation.image = image;
-        }
-        else if (error) {
-            weakSelf.error = error;
-            [weakSelf finish];
-        }
-        
-    }];
-    
-    [self.setOperation addDependency:self.downloadOperation];
-    
-    self = [super initWithOperations:@[self.setOperation, self.downloadOperation]];
+    self = [super initWithOperations:@[downloadOperation, setOperation]];
     if(self) {
+        self.downloadOperation = downloadOperation;
+        self.downloadOperation.delegate = self;
         
+        self.setOperation = setOperation;
+        self.setOperation.delegate = self;
     }
     return self;
 }
@@ -66,6 +55,29 @@
     loadOperation.searchString = searchString;
     loadOperation.imageView = imageView;
     return loadOperation;
+}
+
+#pragma mark TWGOperationDelegate
+
+- (void)operation:(TWGBaseOperation *)operation didCompleteWithResult:(id)result
+{
+    if(operation == self.downloadOperation) {
+        if([result isKindOfClass:[UIImage class]]) {
+            UIImage *image = (UIImage *)result;
+            self.setOperation.image = image;
+        }
+        else  {
+            [self finishWithError:[NSError errorWithDomain:NSStringFromClass(self.class) code:0 userInfo:nil]];
+        }
+    }
+    else if(operation == self.setOperation) {
+        [self finishWithResult:result];
+    }
+}
+
+- (void)operation:(TWGBaseOperation *)operation didFailWithError:(NSError *)error
+{
+    [self finishWithError:error];
 }
 
 @end

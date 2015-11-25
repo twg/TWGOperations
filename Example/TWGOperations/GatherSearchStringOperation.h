@@ -6,9 +6,9 @@
 //  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import <TWGOperations/TWGOperations-umbrella.h>
+#import "AlertOperation.h"
 
-@interface GatherSearchStringOperation : TWGAlertOperation
+@interface GatherSearchStringOperation : AlertOperation
 
 + (instancetype) gatherSearchStringOperation;
 

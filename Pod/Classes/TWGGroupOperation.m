@@ -8,11 +8,15 @@
 
 #import "TWGGroupOperation.h"
 #import "NSOperation+GroupDependencies.h"
+#import "TWGGroupCompletionOperation.h"
+
 
 @interface TWGGroupOperation ()
 
 @property (nonatomic, strong, readwrite) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) NSArray<NSOperation*>* operations;
+
+@property (nonatomic, strong) TWGGroupCompletionOperation *completionOperation;
 
 @end
 
@@ -28,27 +32,35 @@
 
 - (void)execute
 {
-    __weak typeof(self) weakSelf = self;
-    NSBlockOperation *completionOperation = [NSBlockOperation blockOperationWithBlock:^{
-        [weakSelf finish];
-    }];
+    self.completionOperation = [TWGGroupCompletionOperation groupCompletionOperationWithProxyOperation:self];
     
     if([self.operations count]) {
-        [completionOperation addDependencies:self.operations];
+        [self.completionOperation addDependencies:self.operations];
         [self.operationQueue addOperations:self.operations waitUntilFinished:NO];
     }
     
-    [self.operationQueue addOperation:completionOperation];
+    [self.operationQueue addOperation:self.completionOperation];
 }
 
-- (void)setSerial:(BOOL)serial
+- (void)finishWithResult:(id)result
 {
-    if(_serial != serial) {
-        _serial = serial;
+    self.completionOperation.result = result;
+    [self cancelAllRemainingOperations];
+}
+
+- (void)finishWithError:(NSError *)error
+{
+    self.completionOperation.error = error;
+    [self cancelAllRemainingOperations];
+}
+
+- (void)cancelAllRemainingOperations
+{
+    for (NSOperation *operation in self.operations) {
+        if(![operation isFinished] && ![operation isExecuting]) {
+            [operation cancel];
+        }
     }
-    
-    NSInteger maxConcurrentOperations = (serial)? 1 : NSOperationQueueDefaultMaxConcurrentOperationCount;
-    [self.operationQueue setMaxConcurrentOperationCount:maxConcurrentOperations];
 }
 
 - (NSOperationQueue *)operationQueue

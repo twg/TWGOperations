@@ -1,33 +1,10 @@
 PODS:
-  - AFNetworking (2.6.1):
-    - AFNetworking/NSURLConnection (= 2.6.1)
-    - AFNetworking/NSURLSession (= 2.6.1)
-    - AFNetworking/Reachability (= 2.6.1)
-    - AFNetworking/Security (= 2.6.1)
-    - AFNetworking/Serialization (= 2.6.1)
-    - AFNetworking/UIKit (= 2.6.1)
-  - AFNetworking/NSURLConnection (2.6.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.1)
-  - AFNetworking/Security (2.6.1)
-  - AFNetworking/Serialization (2.6.1)
-  - AFNetworking/UIKit (2.6.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - Expecta (1.0.3)
+  - Expecta (1.0.5)
   - OCMock (3.2)
-  - Specta (1.0.4)
-  - TWGOperations (0.1.0):
-    - AFNetworking (~> 2.3)
+  - Specta (1.0.5)
+  - TWGOperations (0.1.0)
 
 DEPENDENCIES:
-  - AFNetworking
   - Expecta
   - OCMock
   - Specta
@@ -35,13 +12,12 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   TWGOperations:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
-  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
-  Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
-  TWGOperations: 5c9c691fac69154143c1b5a46e49e1ef8eeed974
+  Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
+  TWGOperations: 2702df85b6b5874832ca036e080d3f3fcae1af82
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

@@ -22,7 +22,7 @@ pod "TWGOperations"
 
 ## Author
 
-Nicholas Kuhne, njkuhne@me.com
+Nicholas Kuhne, nkuhne@twg.ca
 
 ## License
 

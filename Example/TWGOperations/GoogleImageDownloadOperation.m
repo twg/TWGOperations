@@ -7,13 +7,14 @@
 //
 
 #import "GoogleImageDownloadOperation.h"
+#import "GETOperation.h"
 
 static const NSString *GoogleImageBaseURL = @"https://ajax.googleapis.com/ajax/services/search/images?v=2.0&q=";
 
-@interface GoogleImageDownloadOperation ()
+@interface GoogleImageDownloadOperation () <TWGOperationDelegate>
 
-@property (nonatomic, strong) TWGGETOperation *searchRequest;
-@property (nonatomic, strong) TWGGETOperation *imageRequest;
+@property (nonatomic, strong) GETOperation *searchRequest;
+@property (nonatomic, strong) GETOperation *imageRequest;
 
 @end
 
@@ -21,48 +22,19 @@ static const NSString *GoogleImageBaseURL = @"https://ajax.googleapis.com/ajax/s
 
 - (instancetype)init
 {
-    self.searchRequest = [[TWGGETOperation alloc] init];
-    self.imageRequest = [[TWGGETOperation alloc] init];
- 
-    __weak typeof(self) weakSelf = self;
+    GETOperation *searchRequest = [[GETOperation alloc] init];
+    GETOperation *imageRequest = [[GETOperation alloc] init];
     
-    [self.searchRequest setOperationCompletionBlock:^(id data, NSError *error) {
-        
-        if(data) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            NSArray *results = dict[@"responseData"][@"results"];
-            NSDictionary *imageDict = [results firstObject];
-            
-            NSString *url = imageDict[@"url"];
-            if(url) {
-                weakSelf.imageRequest.url = [NSURL URLWithString:url];
-            }
-            else {
-                [weakSelf finishWithError:[NSError errorWithDomain:@"NotFound" code:404 userInfo:nil]];
-            }
-        }
-        else {
-            [weakSelf finishWithError:error];
-        }
-        
-    }];
+    [imageRequest addDependency:searchRequest];
     
-    [self.imageRequest setOperationCompletionBlock:^(id data, NSError *error) {
-        
-        if(data) {
-            weakSelf.result = [UIImage imageWithData:data];
-            [weakSelf finish];
-        }
-        else {
-            [weakSelf finishWithError:error];
-        }
-    }];
-    
-    [self.imageRequest addDependency:self.searchRequest];
-    
-    self = [super initWithOperations:@[self.searchRequest, self.imageRequest]];
+    self = [super initWithOperations:@[searchRequest, imageRequest]];
     if(self) {
         
+        self.searchRequest = searchRequest;
+        self.searchRequest.delegate = self;
+        
+        self.imageRequest = imageRequest;
+        self.imageRequest.delegate = self;
     }
     
     return self;
@@ -74,12 +46,39 @@ static const NSString *GoogleImageBaseURL = @"https://ajax.googleapis.com/ajax/s
     self.searchRequest.url = [GoogleImageDownloadOperation urlForSearchString:searchString];
 }
 
+#pragma mark TWGOperationDelegate
 
-- (void) finishWithError:(NSError *)error
+- (void)operation:(TWGBaseOperation *)operation didCompleteWithResult:(id)result
 {
-    self.error = error;
-    [self finish];
+    if(operation == self.searchRequest) {
+        if([result isKindOfClass:[NSData class]]) {
+            NSData *data = (NSData *)result;
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSArray *results = dict[@"responseData"][@"results"];
+            NSDictionary *imageDict = [results firstObject];
+            
+            NSString *url = imageDict[@"url"];
+            if(url) {
+                self.imageRequest.url = [NSURL URLWithString:url];
+            }
+        }
+        
+    }
+    else if (operation == self.imageRequest) {
+        if([result isKindOfClass:[NSData class]]) {
+            NSData *data = (NSData *)result;
+            [self finishWithResult:[UIImage imageWithData:data]];
+        }
+    }
 }
+
+- (void)operation:(TWGBaseOperation *)operation didFailWithError:(NSError *)error
+{
+    [self finishWithError:error];
+}
+
+
+#pragma mark Static methods
 
 + (NSURL *)urlForSearchString:(NSString *)searchString
 {
@@ -87,6 +86,7 @@ static const NSString *GoogleImageBaseURL = @"https://ajax.googleapis.com/ajax/s
     NSString *queryString = [NSString stringWithFormat:@"%@%@", GoogleImageBaseURL, escapedString];
     return [NSURL URLWithString:queryString];
 }
+
 
 + (instancetype)imageDownloadOperationWithSearchString:(NSString *)searchString
 {
