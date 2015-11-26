@@ -9,7 +9,7 @@
 #import <TWGOperations/TWGOperations-umbrella.h>
 #import <UIKit/UIKit.h>
 
-@interface ImageViewSetOperation : TWGBaseOperation
+@interface ImageViewSetOperation : TWGOperation
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIImageView *imageView;

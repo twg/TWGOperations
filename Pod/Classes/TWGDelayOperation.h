@@ -6,9 +6,13 @@
 //
 //
 
-#import "TWGBaseOperation.h"
+#import "TWGOperation.h"
 
-@interface TWGDelayOperation : TWGBaseOperation
+/*
+ This operation provides a way to create non waiting delays in a chain of operations
+ */
+
+@interface TWGDelayOperation : TWGOperation
 
 @property (nonatomic, assign) NSTimeInterval delay;
 

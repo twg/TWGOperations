@@ -8,7 +8,7 @@
 
 #import <TWGOperations/TWGOperations-umbrella.h>
 
-@interface GETOperation : TWGBaseOperation
+@interface GETOperation : TWGOperation
 
 @property (nonatomic, strong) NSURL *url;
 

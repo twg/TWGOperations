@@ -32,7 +32,7 @@
     [super tearDown];
 }
 
-#pragma mark internal tests
+#pragma mark Internal Tests
 
 - (void)testThatStartSetsIsExecutingToYes
 {
@@ -49,7 +49,6 @@
 - (void)testThatFinishSetsIsFinishedToYes
 {
     id partialMock = OCMPartialMock(self.operation);
-    OCMStub([partialMock execute]);
     
     expect([partialMock isFinished]).to.beFalsy();
     
@@ -82,7 +81,6 @@
     OCMVerify([mockOperation execute]);
 }
 
-
 - (void)testThatExecuteCallsFinish
 {
     id mockOperation = OCMPartialMock(self.operation);
@@ -93,7 +91,7 @@
     OCMVerify([mockOperation finish]);
 }
 
-#pragma mark delegate call convenience methods
+#pragma mark Delegate Call Convenience Methods
 
 - (void)testThatFinishWithResultCallsFinish
 {
@@ -115,7 +113,7 @@
     OCMVerify([mockOperation finish]);
 }
 
-#pragma mark delegate tests
+#pragma mark Delegate Tests
 
 - (void)testThatFinishWithResultInformsDelegateOfCompletionWithResult
 {

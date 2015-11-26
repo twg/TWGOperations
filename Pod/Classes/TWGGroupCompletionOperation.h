@@ -6,14 +6,18 @@
 //
 //
 
-#import "TWGBaseOperation.h"
+#import "TWGOperation.h"
 
-@interface TWGGroupCompletionOperation : TWGBaseOperation
+/*
+ This operation is used by TWGGroupOperation for delegate callbacks
+ */
 
-@property (nonatomic, strong) TWGBaseOperation *proxyOperation;
+@interface TWGGroupCompletionOperation : TWGOperation
+
+@property (nonatomic, strong) TWGOperation *proxyOperation;
 @property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSError *error;
 
-+ (instancetype) groupCompletionOperationWithProxyOperation:(TWGBaseOperation *)proxyOperation;
++ (instancetype) groupCompletionOperationWithProxyOperation:(TWGOperation *)proxyOperation;
 
 @end

@@ -6,10 +6,10 @@
 //
 //
 
-#import "TWGBaseOperation.h"
+#import "TWGOperation.h"
 @class TWGGroupCompletionOperation;
 
-@interface TWGGroupOperation : TWGBaseOperation
+@interface TWGGroupOperation : TWGOperation
 
 @property (nonatomic, strong, readonly) NSOperationQueue *operationQueue;
 
@@ -19,5 +19,10 @@
  to have them execute
  */
 - (instancetype) initWithOperations:(NSArray<NSOperation*>*)operations;
+
+/*
+ See TWGBaseOperation for further subclassing instructions
+ */
+
 
 @end

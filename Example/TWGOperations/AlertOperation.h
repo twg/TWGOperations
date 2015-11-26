@@ -9,7 +9,7 @@
 #import <TWGOperations/TWGOperations-umbrella.h>
 #import <UIKit/UIKit.h>
 
-@interface AlertOperation : TWGBaseOperation <UIAlertViewDelegate>
+@interface AlertOperation : TWGOperation <UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIAlertView *alertView;
 

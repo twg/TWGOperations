@@ -33,6 +33,8 @@
     [super tearDown];
 }
 
+#pragma mark Internal Tests
+
 - (void)testThatItAddsAllDependencys
 {
     id operationMock = OCMPartialMock(self.operation);

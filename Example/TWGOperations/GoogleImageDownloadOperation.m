@@ -48,7 +48,7 @@ static const NSString *GoogleImageBaseURL = @"https://ajax.googleapis.com/ajax/s
 
 #pragma mark TWGOperationDelegate
 
-- (void)operation:(TWGBaseOperation *)operation didCompleteWithResult:(id)result
+- (void)operation:(TWGOperation *)operation didCompleteWithResult:(id)result
 {
     if(operation == self.searchRequest) {
         if([result isKindOfClass:[NSData class]]) {
@@ -72,7 +72,7 @@ static const NSString *GoogleImageBaseURL = @"https://ajax.googleapis.com/ajax/s
     }
 }
 
-- (void)operation:(TWGBaseOperation *)operation didFailWithError:(NSError *)error
+- (void)operation:(TWGOperation *)operation didFailWithError:(NSError *)error
 {
     [self finishWithError:error];
 }

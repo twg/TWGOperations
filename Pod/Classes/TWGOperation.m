@@ -6,17 +6,13 @@
 //
 //
 
-#import "TWGBaseOperation.h"
+#import "TWGOperation.h"
 #import "NSOperation+GroupDependencies.h"
-
-@interface TWGBaseOperation ()
-
-@end
 
 static NSString *kIsExecutingKey = @"isExecuting";
 static NSString *kIsFinishedKey = @"isFinished";
 
-@implementation TWGBaseOperation
+@implementation TWGOperation
 {
     BOOL _executing;
     BOOL _finished;

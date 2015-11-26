@@ -40,7 +40,7 @@
     [self finish];
 }
 
-+ (instancetype) groupCompletionOperationWithProxyOperation:(TWGBaseOperation *)proxyOperation
++ (instancetype) groupCompletionOperationWithProxyOperation:(TWGOperation *)proxyOperation
 {
     TWGGroupCompletionOperation *operaiton = [[[self class] alloc] init];
     operaiton.proxyOperation = proxyOperation;
