@@ -11,18 +11,18 @@
 #import <OCMock/OCMock.h>
 #import <Expecta/Expecta.h>
 
-@interface TWGBaseOperationTests : XCTestCase
+@interface TWGOperationTests : XCTestCase
 
-@property (nonatomic, strong) TWGBaseOperation *operation;
+@property (nonatomic, strong) TWGOperation *operation;
 
 @end
 
-@implementation TWGBaseOperationTests
+@implementation TWGOperationTests
 
 - (void)setUp {
     [super setUp];
     
-    self.operation = [[TWGBaseOperation alloc] init];
+    self.operation = [[TWGOperation alloc] init];
 }
 
 - (void)tearDown {

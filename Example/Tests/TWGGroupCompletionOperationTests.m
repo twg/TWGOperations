@@ -26,7 +26,7 @@
     
     self.operation = [[TWGGroupCompletionOperation alloc] init];
     
-    self.proxyMock = OCMClassMock([TWGBaseOperation class]);
+    self.proxyMock = OCMClassMock([TWGOperation class]);
     self.delegateMock = OCMProtocolMock(@protocol(TWGOperationDelegate));
     OCMStub([self.proxyMock delegate]).andReturn(self.delegateMock);
     
@@ -44,7 +44,7 @@
 
 - (void)testThatStaticInitalizerSetsProxyOperation
 {
-    id proxyOperation = OCMClassMock([TWGBaseOperation class]);
+    id proxyOperation = OCMClassMock([TWGOperation class]);
     
     TWGGroupCompletionOperation *operation =
         [TWGGroupCompletionOperation groupCompletionOperationWithProxyOperation:proxyOperation];
