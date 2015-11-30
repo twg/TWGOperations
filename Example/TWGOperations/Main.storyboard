@@ -50,11 +50,20 @@
                                     <constraint firstAttribute="width" constant="200" id="bhG-Ls-AmB"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tin-E9-52d">
+                                <rect key="frame" x="264" y="550" width="72" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Example 4"/>
+                                <connections>
+                                    <action selector="example4Action:" destination="whP-gf-Uak" eventType="touchUpInside" id="Vf7-v0-eO7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WsD-W0-PjW" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="0bN-GC-rLr"/>
+                            <constraint firstItem="Tin-E9-52d" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="0hU-hS-X03"/>
                             <constraint firstItem="gaS-ac-Gbt" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="34" id="1iL-42-onn"/>
                             <constraint firstItem="f5v-oA-9nr" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="34" id="7l9-dZ-0oY"/>
                             <constraint firstItem="WsD-W0-PjW" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="8gF-xd-JvV"/>
@@ -62,6 +71,7 @@
                             <constraint firstItem="yj2-nQ-svk" firstAttribute="leading" secondItem="gaS-ac-Gbt" secondAttribute="trailing" constant="20" id="FB1-Jx-qHe"/>
                             <constraint firstItem="yj2-nQ-svk" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="34" id="aFL-Jb-agr"/>
                             <constraint firstItem="gaS-ac-Gbt" firstAttribute="leading" secondItem="f5v-oA-9nr" secondAttribute="trailing" constant="20" id="h4P-08-Exg"/>
+                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="Tin-E9-52d" secondAttribute="bottom" constant="20" id="zgQ-U5-eao"/>
                         </constraints>
                     </view>
                     <connections>
@@ -70,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="355"/>
+            <point key="canvasLocation" x="67" y="337"/>
         </scene>
     </scenes>
 </document>

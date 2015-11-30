@@ -14,6 +14,8 @@
 #import "GoogleImageViewLoadOperation.h"
 #import "ImageViewSearchOperation.h"
 
+#import "TWGModalPresenterOperation.h"
+
 @interface TWGViewController () <TWGOperationDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
@@ -80,6 +82,23 @@
     [self.operationQueue addOperation:operation];
 }
 
+
+
+/*
+ *
+ *
+ *
+ Example 4
+ *
+ *
+ *
+ */
+- (IBAction)example4Action:(id)sender
+{
+    TWGModalPresenterOperation *presentOperation = [TWGModalPresenterOperation modalPresenterOperationWithParentViewController:self];
+    presentOperation.delegate = self;
+    [self.operationQueue addOperation:presentOperation];
+}
 
 #pragma mark TWGOperationDelegate
 

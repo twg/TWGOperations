@@ -20,6 +20,12 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		652D20671BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D20661BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m */; };
+		654E24A01C08EF6400088ECD /* DelegateCallbackOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E249F1C08EF6400088ECD /* DelegateCallbackOperation.m */; };
+		654E24A71C08F11600088ECD /* TWGModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E24A51C08F11600088ECD /* TWGModalViewController.m */; };
+		654E24A81C08F11600088ECD /* TWGModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 654E24A61C08F11600088ECD /* TWGModalViewController.xib */; };
+		654E24AB1C08F55800088ECD /* TWGModalPresenterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E24AA1C08F55800088ECD /* TWGModalPresenterOperation.m */; };
+		654E24AF1C08F6DD00088ECD /* ModalPresentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E24AE1C08F6DD00088ECD /* ModalPresentOperation.m */; };
+		654E24B21C08F6EA00088ECD /* ModalDismissOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E24B11C08F6EA00088ECD /* ModalDismissOperation.m */; };
 		65868DEA1BF374AA00445B22 /* ImageViewSetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DE91BF374AA00445B22 /* ImageViewSetOperation.m */; };
 		65868DED1BF3763500445B22 /* GoogleImageViewLoadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DEC1BF3763500445B22 /* GoogleImageViewLoadOperation.m */; };
 		65868DF01BF381B800445B22 /* GatherSearchStringOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DEF1BF381B800445B22 /* GatherSearchStringOperation.m */; };
@@ -69,6 +75,17 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		652D20651BEBF50C006FD6C7 /* GoogleImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleImageDownloadOperation.h; sourceTree = "<group>"; };
 		652D20661BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleImageDownloadOperation.m; sourceTree = "<group>"; };
+		654E249E1C08EF6400088ECD /* DelegateCallbackOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateCallbackOperation.h; sourceTree = "<group>"; };
+		654E249F1C08EF6400088ECD /* DelegateCallbackOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateCallbackOperation.m; sourceTree = "<group>"; };
+		654E24A41C08F11600088ECD /* TWGModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWGModalViewController.h; sourceTree = "<group>"; };
+		654E24A51C08F11600088ECD /* TWGModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGModalViewController.m; sourceTree = "<group>"; };
+		654E24A61C08F11600088ECD /* TWGModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWGModalViewController.xib; sourceTree = "<group>"; };
+		654E24A91C08F55800088ECD /* TWGModalPresenterOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWGModalPresenterOperation.h; sourceTree = "<group>"; };
+		654E24AA1C08F55800088ECD /* TWGModalPresenterOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGModalPresenterOperation.m; sourceTree = "<group>"; };
+		654E24AD1C08F6DD00088ECD /* ModalPresentOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalPresentOperation.h; sourceTree = "<group>"; };
+		654E24AE1C08F6DD00088ECD /* ModalPresentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalPresentOperation.m; sourceTree = "<group>"; };
+		654E24B01C08F6EA00088ECD /* ModalDismissOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalDismissOperation.h; sourceTree = "<group>"; };
+		654E24B11C08F6EA00088ECD /* ModalDismissOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalDismissOperation.m; sourceTree = "<group>"; };
 		65868DE81BF374AA00445B22 /* ImageViewSetOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewSetOperation.h; sourceTree = "<group>"; };
 		65868DE91BF374AA00445B22 /* ImageViewSetOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewSetOperation.m; sourceTree = "<group>"; };
 		65868DEB1BF3763500445B22 /* GoogleImageViewLoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleImageViewLoadOperation.h; sourceTree = "<group>"; };
@@ -214,6 +231,21 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		654E24AC1C08F6CC00088ECD /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				654E24A91C08F55800088ECD /* TWGModalPresenterOperation.h */,
+				654E24AA1C08F55800088ECD /* TWGModalPresenterOperation.m */,
+				654E249E1C08EF6400088ECD /* DelegateCallbackOperation.h */,
+				654E249F1C08EF6400088ECD /* DelegateCallbackOperation.m */,
+				654E24AD1C08F6DD00088ECD /* ModalPresentOperation.h */,
+				654E24AE1C08F6DD00088ECD /* ModalPresentOperation.m */,
+				654E24B01C08F6EA00088ECD /* ModalDismissOperation.h */,
+				654E24B11C08F6EA00088ECD /* ModalDismissOperation.m */,
+			);
+			name = Modal;
+			sourceTree = "<group>";
+		};
 		65DEA2761C0653530023D11A /* Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +263,7 @@
 				65DEA27A1C0656930023D11A /* GETOperation.m */,
 				65DEA27C1C0657160023D11A /* AlertOperation.h */,
 				65DEA27D1C0657160023D11A /* AlertOperation.m */,
+				654E24AC1C08F6CC00088ECD /* Modal */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -240,6 +273,9 @@
 			children = (
 				6003F5A5195388D20070C39A /* TWGViewController.h */,
 				6003F5A6195388D20070C39A /* TWGViewController.m */,
+				654E24A41C08F11600088ECD /* TWGModalViewController.h */,
+				654E24A51C08F11600088ECD /* TWGModalViewController.m */,
+				654E24A61C08F11600088ECD /* TWGModalViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -348,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				654E24A81C08F11600088ECD /* TWGModalViewController.xib in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -461,16 +498,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				654E24AB1C08F55800088ECD /* TWGModalPresenterOperation.m in Sources */,
 				6003F59E195388D20070C39A /* TWGAppDelegate.m in Sources */,
 				65DEA27B1C0656930023D11A /* GETOperation.m in Sources */,
+				654E24A01C08EF6400088ECD /* DelegateCallbackOperation.m in Sources */,
 				6003F5A7195388D20070C39A /* TWGViewController.m in Sources */,
 				65868DF31BF3842E00445B22 /* ImageViewSearchOperation.m in Sources */,
 				652D20671BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m in Sources */,
 				65868DF01BF381B800445B22 /* GatherSearchStringOperation.m in Sources */,
 				65DEA27E1C0657160023D11A /* AlertOperation.m in Sources */,
 				65868DEA1BF374AA00445B22 /* ImageViewSetOperation.m in Sources */,
+				654E24A71C08F11600088ECD /* TWGModalViewController.m in Sources */,
+				654E24B21C08F6EA00088ECD /* ModalDismissOperation.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				65868DED1BF3763500445B22 /* GoogleImageViewLoadOperation.m in Sources */,
+				654E24AF1C08F6DD00088ECD /* ModalPresentOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,11 +636,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWGOperations/TWGOperations-Prefix.pch";
 				INFOPLIST_FILE = "TWGOperations/TWGOperations-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -609,11 +653,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWGOperations/TWGOperations-Prefix.pch";
 				INFOPLIST_FILE = "TWGOperations/TWGOperations-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
