@@ -1,14 +1,14 @@
 //
-//  TWGGroupCompletionOperation.m
+//  TWGGroupCallbackOperation.m
 //  Pods
 //
 //  Created by Nicholas Kuhne on 2015-11-25.
 //
 //
 
-#import "TWGGroupCompletionOperation.h"
+#import "TWGGroupCallbackOperation.h"
 
-@implementation TWGGroupCompletionOperation
+@implementation TWGGroupCallbackOperation
 
 - (void)execute
 {
@@ -26,7 +26,6 @@
         [self.proxyOperation.delegate operation:self.proxyOperation didCompleteWithResult:result];
     }
     
-    [self.proxyOperation finish];
     [self finish];
 }
 
@@ -36,15 +35,14 @@
         [self.proxyOperation.delegate operation:self.proxyOperation didFailWithError:error];
     }
     
-    [self.proxyOperation finish];
     [self finish];
 }
 
-+ (instancetype) groupCompletionOperationWithProxyOperation:(TWGOperation *)proxyOperation
++ (instancetype) groupCallbackOperationWithProxyOperation:(TWGOperation *)proxyOperation
 {
-    TWGGroupCompletionOperation *operaiton = [[[self class] alloc] init];
-    operaiton.proxyOperation = proxyOperation;
-    return operaiton;
+    TWGGroupCallbackOperation *operation = [[[self class] alloc] init];
+    operation.proxyOperation = proxyOperation;
+    return operation;
 }
 
 

@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) NSArray<NSOperation*>* operations;
-@property (nonatomic, strong) TWGGroupCompletionOperation *completionOperation;
+@property (nonatomic, strong) TWGGroupCallbackOperation *callbackOperation;
 
 - (void)cancelAllRemainingOperations;
 
@@ -27,9 +27,11 @@
 @property (nonatomic, strong) id mockOperation2;
 @property (nonatomic, strong) id mockOperation3;
 @property (nonatomic, strong) id mockOperationQueue;
-@property (nonatomic, strong) id mockGroupCompletionOperation;
+@property (nonatomic, strong) id mockGroupCallbackOperation;
 
 @property (nonatomic, strong) TWGGroupOperation *operation;
+
+@property (nonatomic, strong) id blockOperationMock;
 
 @end
 
@@ -49,9 +51,11 @@
     self.operation = [[TWGGroupOperation alloc] initWithOperations:operations];
     self.operation.operationQueue = self.mockOperationQueue;
 
-    self.mockGroupCompletionOperation = OCMClassMock([TWGGroupCompletionOperation class]);
-    OCMStub([self.mockGroupCompletionOperation groupCompletionOperationWithProxyOperation:OCMOCK_ANY]).andReturn(self.mockGroupCompletionOperation);
-
+    self.mockGroupCallbackOperation = OCMClassMock([TWGGroupCallbackOperation class]);
+    OCMStub([self.mockGroupCallbackOperation groupCallbackOperationWithProxyOperation:OCMOCK_ANY]).andReturn(self.mockGroupCallbackOperation);
+    
+    self.blockOperationMock = OCMClassMock([NSBlockOperation class]);
+    OCMStub([self.blockOperationMock blockOperationWithBlock:OCMOCK_ANY]).andReturn(self.blockOperationMock);
 }
 
 - (void)tearDown {
@@ -60,7 +64,14 @@
     self.mockOperation2 = nil;
     self.mockOperation3 = nil;
     
+    [self.mockGroupCallbackOperation stopMocking];
+    self.mockGroupCallbackOperation = nil;
+    
+    [self.blockOperationMock stopMocking];
+    self.blockOperationMock = nil;
+    
     self.operation = nil;
+    self.mockOperationQueue = nil;
     
     [super tearDown];
 }
@@ -87,32 +98,32 @@
 {
     [self.operation execute];
     
-    expect(self.operation.completionOperation).to.equal(self.mockGroupCompletionOperation);
+    expect(self.operation.callbackOperation).to.equal(self.mockGroupCallbackOperation);
 }
 
-- (void)testThatExecureSetsCompletionOperationsProxyOperation
+- (void)testThatExecuteSetsCompletionOperationsProxyOperation
 {
     [self.operation execute];
     
-    OCMVerify([self.mockGroupCompletionOperation groupCompletionOperationWithProxyOperation:self.operation]);
+    OCMVerify([self.mockGroupCallbackOperation groupCallbackOperationWithProxyOperation:self.operation]);
 }
 
 - (void)testThatExecuteAddsCompletionOperationAsDependancyToAllOperations
 {
     [self.operation execute];
     
-    OCMVerify([self.mockGroupCompletionOperation addDependencies:self.operation.operations]);
+    OCMVerify([self.mockGroupCallbackOperation addDependencies:self.operation.operations]);
 }
 
 - (void)testThatExecuteDoesNotAddAnyDependencysToCompletionOperationWithNoOperations
 {
     self.operation.operations = nil;
     
-    [[self.mockGroupCompletionOperation reject] addDependencies:OCMOCK_ANY];
+    [[self.mockGroupCallbackOperation reject] addDependencies:OCMOCK_ANY];
     
     [self.operation execute];
     
-    OCMVerifyAll(self.mockGroupCompletionOperation);
+    OCMVerifyAll(self.mockGroupCallbackOperation);
 }
 
 - (void)testThatExecuteAddsAllOperationsToOperationQueue
@@ -126,20 +137,20 @@
 {
     [self.operation execute];
     
-    OCMVerify([self.mockOperationQueue addOperation:self.mockGroupCompletionOperation]);
+    OCMVerify([self.mockOperationQueue addOperation:self.mockGroupCallbackOperation]);
 }
 
 #pragma mark finishWithResult
 
 - (void)testThatFinishWithResultSetsCompletionOperationsResult
 {
-    self.operation.completionOperation = self.mockGroupCompletionOperation;
+    self.operation.callbackOperation = self.mockGroupCallbackOperation;
     
     id mockResult = OCMClassMock([NSObject class]);
     
     [self.operation finishWithResult:mockResult];
     
-    OCMVerify([self.mockGroupCompletionOperation setResult:mockResult]);
+    OCMVerify([self.mockGroupCallbackOperation setResult:mockResult]);
 }
 
 - (void)testThatFinishWithResultCallsCancelAllRemainingOperations
@@ -156,13 +167,13 @@
 
 - (void)testThatFinishWithErrorSetsCompletionOperationsError
 {
-    self.operation.completionOperation = self.mockGroupCompletionOperation;
+    self.operation.callbackOperation = self.mockGroupCallbackOperation;
     
     id mockError = OCMClassMock([NSError class]);
     
     [self.operation finishWithError:mockError];
     
-    OCMVerify([self.mockGroupCompletionOperation setError:mockError]);
+    OCMVerify([self.mockGroupCallbackOperation setError:mockError]);
 }
 
 - (void)testThatFinishWithErrorCallsCancelAllRemainingOperations
@@ -227,11 +238,11 @@
 
 - (void)testThatCancelAllRemainingOperationsDoesNotCancelCompletionOperation
 {
-    [[self.mockGroupCompletionOperation reject] cancel];
+    [[self.mockGroupCallbackOperation reject] cancel];
     
     [self.operation cancelAllRemainingOperations];
     
-    OCMVerifyAll(self.mockGroupCompletionOperation);
+    OCMVerifyAll(self.mockGroupCallbackOperation);
 }
 
 @end

@@ -30,10 +30,16 @@
 		65868DED1BF3763500445B22 /* GoogleImageViewLoadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DEC1BF3763500445B22 /* GoogleImageViewLoadOperation.m */; };
 		65868DF01BF381B800445B22 /* GatherSearchStringOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DEF1BF381B800445B22 /* GatherSearchStringOperation.m */; };
 		65868DF31BF3842E00445B22 /* ImageViewSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DF21BF3842E00445B22 /* ImageViewSearchOperation.m */; };
-		659D06121BC8563C00AD5D94 /* TWGBaseOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659D06111BC8563C00AD5D94 /* TWGBaseOperationTests.m */; };
+		659D06121BC8563C00AD5D94 /* TWGOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659D06111BC8563C00AD5D94 /* TWGOperationTests.m */; };
+		65C96CB31C0CE35100298710 /* TWGOperationIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB21C0CE35100298710 /* TWGOperationIntegrationTests.m */; };
+		65C96CB51C0CE82100298710 /* TWGGroupOperationIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB41C0CE82100298710 /* TWGGroupOperationIntegrationTests.m */; };
+		65C96CB91C0CE8D200298710 /* FailingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB81C0CE8D200298710 /* FailingOperation.m */; };
+		65C96CBC1C0CE91E00298710 /* SucceedingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CBB1C0CE91E00298710 /* SucceedingOperation.m */; };
+		65C96CBF1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CBE1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m */; };
+		65C96CC21C0CEB6B00298710 /* ReportingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CC11C0CEB6B00298710 /* ReportingOperation.m */; };
 		65DEA26F1C0632770023D11A /* NSOperationGroupDependencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA26E1C0632770023D11A /* NSOperationGroupDependencyTests.m */; };
 		65DEA2711C0634DD0023D11A /* TWGDelayOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA2701C0634DD0023D11A /* TWGDelayOperationTests.m */; };
-		65DEA2731C063B130023D11A /* TWGGroupCompletionOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA2721C063B130023D11A /* TWGGroupCompletionOperationTests.m */; };
+		65DEA2731C063B130023D11A /* TWGGroupCallbackOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA2721C063B130023D11A /* TWGGroupCallbackOperationTests.m */; };
 		65DEA2751C0641410023D11A /* TWGGroupOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA2741C0641410023D11A /* TWGGroupOperationTests.m */; };
 		65DEA27B1C0656930023D11A /* GETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA27A1C0656930023D11A /* GETOperation.m */; };
 		65DEA27E1C0657160023D11A /* AlertOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA27D1C0657160023D11A /* AlertOperation.m */; };
@@ -94,10 +100,20 @@
 		65868DEF1BF381B800445B22 /* GatherSearchStringOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatherSearchStringOperation.m; sourceTree = "<group>"; };
 		65868DF11BF3842E00445B22 /* ImageViewSearchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewSearchOperation.h; sourceTree = "<group>"; };
 		65868DF21BF3842E00445B22 /* ImageViewSearchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewSearchOperation.m; sourceTree = "<group>"; };
-		659D06111BC8563C00AD5D94 /* TWGBaseOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGBaseOperationTests.m; sourceTree = "<group>"; };
+		659D06111BC8563C00AD5D94 /* TWGOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGOperationTests.m; sourceTree = "<group>"; };
+		65C96CB21C0CE35100298710 /* TWGOperationIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGOperationIntegrationTests.m; sourceTree = "<group>"; };
+		65C96CB41C0CE82100298710 /* TWGGroupOperationIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGGroupOperationIntegrationTests.m; sourceTree = "<group>"; };
+		65C96CB71C0CE8D200298710 /* FailingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FailingOperation.h; sourceTree = "<group>"; };
+		65C96CB81C0CE8D200298710 /* FailingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FailingOperation.m; sourceTree = "<group>"; };
+		65C96CBA1C0CE91E00298710 /* SucceedingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SucceedingOperation.h; sourceTree = "<group>"; };
+		65C96CBB1C0CE91E00298710 /* SucceedingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SucceedingOperation.m; sourceTree = "<group>"; };
+		65C96CBD1C0CEB4C00298710 /* DelegateForwardingGroupOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateForwardingGroupOperation.h; sourceTree = "<group>"; };
+		65C96CBE1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateForwardingGroupOperation.m; sourceTree = "<group>"; };
+		65C96CC01C0CEB6B00298710 /* ReportingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportingOperation.h; sourceTree = "<group>"; };
+		65C96CC11C0CEB6B00298710 /* ReportingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportingOperation.m; sourceTree = "<group>"; };
 		65DEA26E1C0632770023D11A /* NSOperationGroupDependencyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSOperationGroupDependencyTests.m; sourceTree = "<group>"; };
 		65DEA2701C0634DD0023D11A /* TWGDelayOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGDelayOperationTests.m; sourceTree = "<group>"; };
-		65DEA2721C063B130023D11A /* TWGGroupCompletionOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGGroupCompletionOperationTests.m; sourceTree = "<group>"; };
+		65DEA2721C063B130023D11A /* TWGGroupCallbackOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGGroupCallbackOperationTests.m; sourceTree = "<group>"; };
 		65DEA2741C0641410023D11A /* TWGGroupOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGGroupOperationTests.m; sourceTree = "<group>"; };
 		65DEA2791C0656930023D11A /* GETOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GETOperation.h; sourceTree = "<group>"; };
 		65DEA27A1C0656930023D11A /* GETOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GETOperation.m; sourceTree = "<group>"; };
@@ -202,11 +218,13 @@
 			isa = PBXGroup;
 			children = (
 				6003F5B6195388D20070C39A /* Supporting Files */,
-				659D06111BC8563C00AD5D94 /* TWGBaseOperationTests.m */,
+				659D06111BC8563C00AD5D94 /* TWGOperationTests.m */,
 				65DEA26E1C0632770023D11A /* NSOperationGroupDependencyTests.m */,
 				65DEA2701C0634DD0023D11A /* TWGDelayOperationTests.m */,
-				65DEA2721C063B130023D11A /* TWGGroupCompletionOperationTests.m */,
+				65DEA2721C063B130023D11A /* TWGGroupCallbackOperationTests.m */,
 				65DEA2741C0641410023D11A /* TWGGroupOperationTests.m */,
+				65C96CB21C0CE35100298710 /* TWGOperationIntegrationTests.m */,
+				65C96CB41C0CE82100298710 /* TWGGroupOperationIntegrationTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -246,9 +264,25 @@
 			name = Modal;
 			sourceTree = "<group>";
 		};
+		65C96CB61C0CE88300298710 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				65C96CB71C0CE8D200298710 /* FailingOperation.h */,
+				65C96CB81C0CE8D200298710 /* FailingOperation.m */,
+				65C96CBA1C0CE91E00298710 /* SucceedingOperation.h */,
+				65C96CBB1C0CE91E00298710 /* SucceedingOperation.m */,
+				65C96CBD1C0CEB4C00298710 /* DelegateForwardingGroupOperation.h */,
+				65C96CBE1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m */,
+				65C96CC01C0CEB6B00298710 /* ReportingOperation.h */,
+				65C96CC11C0CEB6B00298710 /* ReportingOperation.m */,
+			);
+			name = Testing;
+			sourceTree = "<group>";
+		};
 		65DEA2761C0653530023D11A /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				65C96CB61C0CE88300298710 /* Testing */,
 				652D20651BEBF50C006FD6C7 /* GoogleImageDownloadOperation.h */,
 				652D20661BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m */,
 				65868DE81BF374AA00445B22 /* ImageViewSetOperation.h */,
@@ -499,18 +533,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				654E24AB1C08F55800088ECD /* TWGModalPresenterOperation.m in Sources */,
+				65C96CBF1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m in Sources */,
 				6003F59E195388D20070C39A /* TWGAppDelegate.m in Sources */,
 				65DEA27B1C0656930023D11A /* GETOperation.m in Sources */,
 				654E24A01C08EF6400088ECD /* DelegateCallbackOperation.m in Sources */,
 				6003F5A7195388D20070C39A /* TWGViewController.m in Sources */,
 				65868DF31BF3842E00445B22 /* ImageViewSearchOperation.m in Sources */,
+				65C96CBC1C0CE91E00298710 /* SucceedingOperation.m in Sources */,
 				652D20671BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m in Sources */,
 				65868DF01BF381B800445B22 /* GatherSearchStringOperation.m in Sources */,
+				65C96CB91C0CE8D200298710 /* FailingOperation.m in Sources */,
 				65DEA27E1C0657160023D11A /* AlertOperation.m in Sources */,
 				65868DEA1BF374AA00445B22 /* ImageViewSetOperation.m in Sources */,
 				654E24A71C08F11600088ECD /* TWGModalViewController.m in Sources */,
 				654E24B21C08F6EA00088ECD /* ModalDismissOperation.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				65C96CC21C0CEB6B00298710 /* ReportingOperation.m in Sources */,
 				65868DED1BF3763500445B22 /* GoogleImageViewLoadOperation.m in Sources */,
 				654E24AF1C08F6DD00088ECD /* ModalPresentOperation.m in Sources */,
 			);
@@ -521,10 +559,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DEA2711C0634DD0023D11A /* TWGDelayOperationTests.m in Sources */,
-				659D06121BC8563C00AD5D94 /* TWGBaseOperationTests.m in Sources */,
-				65DEA2731C063B130023D11A /* TWGGroupCompletionOperationTests.m in Sources */,
+				659D06121BC8563C00AD5D94 /* TWGOperationTests.m in Sources */,
+				65DEA2731C063B130023D11A /* TWGGroupCallbackOperationTests.m in Sources */,
+				65C96CB51C0CE82100298710 /* TWGGroupOperationIntegrationTests.m in Sources */,
 				65DEA2751C0641410023D11A /* TWGGroupOperationTests.m in Sources */,
 				65DEA26F1C0632770023D11A /* NSOperationGroupDependencyTests.m in Sources */,
+				65C96CB31C0CE35100298710 /* TWGOperationIntegrationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

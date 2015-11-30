@@ -46,6 +46,29 @@
     expect([partialMock isExecuting]).to.beTruthy();
 }
 
+- (void)testThatACanceledOperaitonDoesNotExecute
+{
+    id partialMock = OCMPartialMock(self.operation);
+    OCMStub([partialMock isCancelled]).andReturn(YES);
+    
+    [[partialMock reject] execute];
+    
+    [partialMock start];
+    
+    OCMVerifyAll(partialMock);
+}
+
+- (void)testThatACanceledOperaitonCallsFinish
+{
+    id partialMock = OCMPartialMock(self.operation);
+    OCMStub([partialMock isCancelled]).andReturn(YES);
+    OCMStub([partialMock finish]);
+    
+    [partialMock start];
+    
+    OCMVerify([partialMock finish]);
+}
+
 - (void)testThatFinishSetsIsFinishedToYes
 {
     id partialMock = OCMPartialMock(self.operation);
@@ -57,7 +80,7 @@
     expect([partialMock isFinished]).to.beTruthy();
 }
 
-- (void)testThatFinishSetsisExecutingToNo
+- (void)testThatFinishSetsIsExecutingToNo
 {
     id partialMock = OCMPartialMock(self.operation);
     OCMStub([partialMock execute]);

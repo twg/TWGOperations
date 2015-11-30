@@ -11,20 +11,20 @@
 #import <OCMock/OCMock.h>
 #import <Expecta/Expecta.h>
 
-@interface TWGGroupCompletionOperationTests : XCTestCase
+@interface TWGGroupCallbackOperationTests : XCTestCase
 
-@property (nonatomic, strong) TWGGroupCompletionOperation *operation;
+@property (nonatomic, strong) TWGGroupCallbackOperation *operation;
 @property (nonatomic, strong) id delegateMock;
 @property (nonatomic, strong) id proxyMock;
 
 @end
 
-@implementation TWGGroupCompletionOperationTests
+@implementation TWGGroupCallbackOperationTests
 
 - (void)setUp {
     [super setUp];
     
-    self.operation = [[TWGGroupCompletionOperation alloc] init];
+    self.operation = [[TWGGroupCallbackOperation alloc] init];
     
     self.proxyMock = OCMClassMock([TWGOperation class]);
     self.delegateMock = OCMProtocolMock(@protocol(TWGOperationDelegate));
@@ -46,8 +46,8 @@
 {
     id proxyOperation = OCMClassMock([TWGOperation class]);
     
-    TWGGroupCompletionOperation *operation =
-        [TWGGroupCompletionOperation groupCompletionOperationWithProxyOperation:proxyOperation];
+    TWGGroupCallbackOperation *operation =
+        [TWGGroupCallbackOperation groupCallbackOperationWithProxyOperation:proxyOperation];
     
     expect(operation.proxyOperation).to.equal(proxyOperation);
 }
@@ -131,20 +131,6 @@
     [self.operation finishWithError:mockError];
     
     OCMVerify([self.delegateMock operation:self.proxyMock didFailWithError:mockError]);
-}
-
-- (void)testThatFinishWithResultCallsFinishOnProxy
-{
-    [self.operation finishWithResult:nil];
-    OCMVerify([self.proxyMock finish]);
-}
-
-- (void)testThatFinishWithErrorCallsFinishOnProxy
-{
-    id mockError = OCMClassMock([NSError class]);
-    
-    [self.operation finishWithError:mockError];
-    OCMVerify([self.proxyMock finish]);
 }
 
 - (void)testThatFinishWithResultCallsFinish

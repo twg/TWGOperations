@@ -8,7 +8,7 @@
 
 #import "TWGGroupOperation.h"
 #import "NSOperation+GroupDependencies.h"
-#import "TWGGroupCompletionOperation.h"
+#import "TWGGroupCallbackOperation.h"
 
 
 @interface TWGGroupOperation ()
@@ -16,7 +16,8 @@
 @property (nonatomic, strong, readwrite) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) NSArray<NSOperation*>* operations;
 
-@property (nonatomic, strong) TWGGroupCompletionOperation *completionOperation;
+@property (nonatomic, strong) TWGGroupCallbackOperation *callbackOperation;
+@property (nonatomic, strong) NSBlockOperation *completionOperation;
 
 @end
 
@@ -32,25 +33,33 @@
 
 - (void)execute
 {
-    self.completionOperation = [TWGGroupCompletionOperation groupCompletionOperationWithProxyOperation:self];
+    self.callbackOperation = [TWGGroupCallbackOperation groupCallbackOperationWithProxyOperation:self];
     
     if([self.operations count]) {
-        [self.completionOperation addDependencies:self.operations];
+        [self.callbackOperation addDependencies:self.operations];
         [self.operationQueue addOperations:self.operations waitUntilFinished:NO];
     }
     
+    __weak typeof(self) weakSelf = self;
+    self.completionOperation = [NSBlockOperation blockOperationWithBlock:^{
+        [weakSelf finish];
+    }];
+    
+    [self.completionOperation addDependency:self.callbackOperation];
+    
+    [self.operationQueue addOperation:self.callbackOperation];
     [self.operationQueue addOperation:self.completionOperation];
 }
 
 - (void)finishWithResult:(id)result
 {
-    self.completionOperation.result = result;
+    self.callbackOperation.result = result;
     [self cancelAllRemainingOperations];
 }
 
 - (void)finishWithError:(NSError *)error
 {
-    self.completionOperation.error = error;
+    self.callbackOperation.error = error;
     [self cancelAllRemainingOperations];
 }
 

@@ -2,7 +2,7 @@
 
 #import "NSOperation+GroupDependencies.h"
 #import "TWGDelayOperation.h"
-#import "TWGGroupCompletionOperation.h"
+#import "TWGGroupCallbackOperation.h"
 #import "TWGGroupOperation.h"
 #import "TWGOperation.h"
 

@@ -49,10 +49,15 @@ static NSString *kIsFinishedKey = @"isFinished";
 
 - (void)start
 {
-    [self willChangeValueForKey:kIsExecutingKey];
-    _executing = YES;
-    [self didChangeValueForKey:kIsExecutingKey];
-    [self execute];
+    if([self isCancelled] == NO) {
+        [self willChangeValueForKey:kIsExecutingKey];
+        _executing = YES;
+        [self didChangeValueForKey:kIsExecutingKey];
+        [self execute];
+    }
+    else {
+        [self finish];
+    }
 }
 
 #pragma mark convenience completions

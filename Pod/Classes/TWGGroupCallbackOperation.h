@@ -1,5 +1,5 @@
 //
-//  TWGGroupCompletionOperation.h
+//  TWGGroupCallbackOperation.h
 //  Pods
 //
 //  Created by Nicholas Kuhne on 2015-11-25.
@@ -12,12 +12,12 @@
  This operation is used by TWGGroupOperation for delegate callbacks
  */
 
-@interface TWGGroupCompletionOperation : TWGOperation
+@interface TWGGroupCallbackOperation : TWGOperation
 
 @property (nonatomic, strong) TWGOperation *proxyOperation;
 @property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSError *error;
 
-+ (instancetype) groupCompletionOperationWithProxyOperation:(TWGOperation *)proxyOperation;
++ (instancetype) groupCallbackOperationWithProxyOperation:(TWGOperation *)proxyOperation;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "TWGOperation.h"
-@class TWGGroupCompletionOperation;
+@class TWGGroupCallbackOperation;
 
 @interface TWGGroupOperation : TWGOperation
 
