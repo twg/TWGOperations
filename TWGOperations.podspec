@@ -20,11 +20,11 @@ Pod::Spec.new do |s|
 			TWGOperations is a library intended to provide building blocks for operation based tasks using NSOperation
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/TWGOperations"
+  s.homepage         = "https://github.com/twg/TWGOperations"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Nicholas Kuhne" => "njkuhne@me.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/TWGOperations.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/twg/TWGOperations.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '7.0'
