@@ -12,7 +12,7 @@
 
 @interface TWGOperation : NSOperation
 
-@property (nonatomic, strong) id<TWGOperationDelegate>delegate;
+@property (nonatomic, weak) id<TWGOperationDelegate>delegate;
 
 /*
  subclasses override this for execution
