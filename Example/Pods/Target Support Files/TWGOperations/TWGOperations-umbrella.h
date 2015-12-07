@@ -3,6 +3,7 @@
 #import "NSOperation+GroupDependencies.h"
 #import "TWGDelayOperation.h"
 #import "TWGGroupCallbackOperation.h"
+#import "TWGGroupOperation+ImpliedDependency.h"
 #import "TWGGroupOperation.h"
 #import "TWGOperation.h"
 

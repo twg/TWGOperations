@@ -37,7 +37,7 @@
     NSTimeInterval delay = 0.01f;
     
     id operationMock = OCMPartialMock(self.operation);
-    OCMExpect([operationMock finish]);
+    OCMExpect([operationMock finishWithResult:OCMOCK_ANY]);
     
     [operationMock setDelay:delay];
     

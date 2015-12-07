@@ -14,6 +14,7 @@
 #import "FailingOperation.h"
 #import "ReportingOperation.h"
 #import "DelegateForwardingGroupOperation.h"
+#import "CompletionOrderReportOperation.h"
 
 @interface TWGGroupOperationIntegrationTests : XCTestCase
 
@@ -118,6 +119,24 @@
     [self.operationQueue addOperations:@[operation, dependantOperation] waitUntilFinished:YES];
     
     expect(dependantOperation.didRun).to.beTruthy();
+}
+
+#pragma mark Implied Dependency 
+
+- (void) testThatImpliedDependencyRunsOperationsInSeries
+{
+    TWGDelayOperation *subOperation1 = [TWGDelayOperation delayOperationWithDelay:0.1f];
+    SucceedingOperation *subOperation2 = [[SucceedingOperation alloc] init];
+    SucceedingOperation *subOperation3 = [[SucceedingOperation alloc] init];
+    
+    NSArray *operations = @[subOperation1, subOperation2, subOperation3];
+    
+    CompletionOrderReportOperation *operation = [[CompletionOrderReportOperation alloc] initWithSerialOperations:operations];
+    subOperation1.delegate = subOperation2.delegate = subOperation3.delegate = operation;
+    
+    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
+    
+    expect(operation.completedOperations).to.equal(operations);
 }
 
 @end

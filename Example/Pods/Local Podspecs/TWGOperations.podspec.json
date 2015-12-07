@@ -1,16 +1,16 @@
 {
   "name": "TWGOperations",
-  "version": "0.1.0",
-  "summary": "A short description of TWGOperations.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/TWGOperations",
+  "version": "0.1.1",
+  "summary": "TWGOperations is an NSOperation wrapper library",
+  "description": "TWGOperations is a library intended to provide building blocks for operation based tasks using NSOperation",
+  "homepage": "https://github.com/twg/TWGOperations",
   "license": "MIT",
   "authors": {
     "Nicholas Kuhne": "njkuhne@me.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/TWGOperations.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/twg/TWGOperations.git",
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "7.0"

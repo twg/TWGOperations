@@ -43,6 +43,8 @@
 		65DEA2751C0641410023D11A /* TWGGroupOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA2741C0641410023D11A /* TWGGroupOperationTests.m */; };
 		65DEA27B1C0656930023D11A /* GETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA27A1C0656930023D11A /* GETOperation.m */; };
 		65DEA27E1C0657160023D11A /* AlertOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DEA27D1C0657160023D11A /* AlertOperation.m */; };
+		65DFF3CB1C15F3910054B827 /* TWGGroupOperationImpliedDependencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DFF3CA1C15F3910054B827 /* TWGGroupOperationImpliedDependencyTests.m */; };
+		65DFF3CF1C1606080054B827 /* CompletionOrderReportOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DFF3CE1C1606080054B827 /* CompletionOrderReportOperation.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D9AA1F761715D79A38170162 /* Pods_TWGOperations_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3670CFAC791ED6F8AEDD4C2C /* Pods_TWGOperations_Example.framework */; };
 		E60DD27D35A9D15962599F58 /* Pods_TWGOperations_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3989207F100083F8F7CCDBD /* Pods_TWGOperations_Tests.framework */; };
@@ -119,6 +121,9 @@
 		65DEA27A1C0656930023D11A /* GETOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GETOperation.m; sourceTree = "<group>"; };
 		65DEA27C1C0657160023D11A /* AlertOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertOperation.h; sourceTree = "<group>"; };
 		65DEA27D1C0657160023D11A /* AlertOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertOperation.m; sourceTree = "<group>"; };
+		65DFF3CA1C15F3910054B827 /* TWGGroupOperationImpliedDependencyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGGroupOperationImpliedDependencyTests.m; sourceTree = "<group>"; };
+		65DFF3CD1C1606080054B827 /* CompletionOrderReportOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionOrderReportOperation.h; sourceTree = "<group>"; };
+		65DFF3CE1C1606080054B827 /* CompletionOrderReportOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionOrderReportOperation.m; sourceTree = "<group>"; };
 		68411F2ADD70BA684E3C8896 /* Pods-TWGOperations_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWGOperations_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TWGOperations_Example/Pods-TWGOperations_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A3989207F100083F8F7CCDBD /* Pods_TWGOperations_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TWGOperations_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,12 +224,12 @@
 			children = (
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				659D06111BC8563C00AD5D94 /* TWGOperationTests.m */,
-				65DEA26E1C0632770023D11A /* NSOperationGroupDependencyTests.m */,
-				65DEA2701C0634DD0023D11A /* TWGDelayOperationTests.m */,
-				65DEA2721C063B130023D11A /* TWGGroupCallbackOperationTests.m */,
 				65DEA2741C0641410023D11A /* TWGGroupOperationTests.m */,
-				65C96CB21C0CE35100298710 /* TWGOperationIntegrationTests.m */,
-				65C96CB41C0CE82100298710 /* TWGGroupOperationIntegrationTests.m */,
+				65DEA2701C0634DD0023D11A /* TWGDelayOperationTests.m */,
+				65DEA26E1C0632770023D11A /* NSOperationGroupDependencyTests.m */,
+				65DFF3CA1C15F3910054B827 /* TWGGroupOperationImpliedDependencyTests.m */,
+				65DEA2721C063B130023D11A /* TWGGroupCallbackOperationTests.m */,
+				65DFF3CC1C15F3D70054B827 /* Integration */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -275,6 +280,8 @@
 				65C96CBE1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m */,
 				65C96CC01C0CEB6B00298710 /* ReportingOperation.h */,
 				65C96CC11C0CEB6B00298710 /* ReportingOperation.m */,
+				65DFF3CD1C1606080054B827 /* CompletionOrderReportOperation.h */,
+				65DFF3CE1C1606080054B827 /* CompletionOrderReportOperation.m */,
 			);
 			name = Testing;
 			sourceTree = "<group>";
@@ -321,6 +328,15 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		65DFF3CC1C15F3D70054B827 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				65C96CB21C0CE35100298710 /* TWGOperationIntegrationTests.m */,
+				65C96CB41C0CE82100298710 /* TWGGroupOperationIntegrationTests.m */,
+			);
+			name = Integration;
 			sourceTree = "<group>";
 		};
 		990A581A16373AD667B3D7C5 /* Pods */ = {
@@ -535,6 +551,7 @@
 				654E24AB1C08F55800088ECD /* TWGModalPresenterOperation.m in Sources */,
 				65C96CBF1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m in Sources */,
 				6003F59E195388D20070C39A /* TWGAppDelegate.m in Sources */,
+				65DFF3CF1C1606080054B827 /* CompletionOrderReportOperation.m in Sources */,
 				65DEA27B1C0656930023D11A /* GETOperation.m in Sources */,
 				654E24A01C08EF6400088ECD /* DelegateCallbackOperation.m in Sources */,
 				6003F5A7195388D20070C39A /* TWGViewController.m in Sources */,
@@ -560,6 +577,7 @@
 			files = (
 				65DEA2711C0634DD0023D11A /* TWGDelayOperationTests.m in Sources */,
 				659D06121BC8563C00AD5D94 /* TWGOperationTests.m in Sources */,
+				65DFF3CB1C15F3910054B827 /* TWGGroupOperationImpliedDependencyTests.m in Sources */,
 				65DEA2731C063B130023D11A /* TWGGroupCallbackOperationTests.m in Sources */,
 				65C96CB51C0CE82100298710 /* TWGGroupOperationIntegrationTests.m in Sources */,
 				65DEA2751C0641410023D11A /* TWGGroupOperationTests.m in Sources */,
