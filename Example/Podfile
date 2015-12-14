@@ -12,3 +12,21 @@ target 'TWGOperations_Tests', :exclusive => true do
   pod 'Expecta'
   pod 'OCMock'
 end
+
+
+target 'TWGOperations_Integration_Tests', :exclusive => true do
+  pod "TWGOperations", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+  pod 'OCMock'
+end
+
+
+target 'TWGOperations_Performance_Tests', :exclusive => true do
+  pod "TWGOperations", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+  pod 'OCMock'
+end

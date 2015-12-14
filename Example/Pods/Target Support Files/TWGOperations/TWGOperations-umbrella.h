@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 
+#import "NSObject+PerformBlock.h"
 #import "NSOperation+GroupDependencies.h"
 #import "TWGDelayOperation.h"
 #import "TWGGroupCallbackOperation.h"

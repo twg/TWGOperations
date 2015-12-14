@@ -6,10 +6,10 @@
 //  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import <TWGOperations/TWGOperations-umbrella.h>
-#import <OCMock/OCMock.h>
 #import <Expecta/Expecta.h>
+#import <OCMock/OCMock.h>
+#import <TWGOperations/TWGOperations-umbrella.h>
+#import <XCTest/XCTest.h>
 
 @interface TWGOperationTests : XCTestCase
 
@@ -19,16 +19,18 @@
 
 @implementation TWGOperationTests
 
-- (void)setUp {
+- (void)setUp
+{
     [super setUp];
-    
+
     self.operation = [[TWGOperation alloc] init];
 }
 
-- (void)tearDown {
-    
+- (void)tearDown
+{
+
     self.operation = nil;
-    
+
     [super tearDown];
 }
 
@@ -36,151 +38,171 @@
 
 - (void)testThatStartSetsIsExecutingToYes
 {
-    id partialMock = OCMPartialMock(self.operation);
-    OCMStub([partialMock execute]);
-    
-    expect([partialMock isExecuting]).to.beFalsy();
-    
-    [partialMock start];
-    
-    expect([partialMock isExecuting]).to.beTruthy();
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock execute]);
+
+    expect([operationMock isExecuting]).to.beFalsy();
+
+    [operationMock start];
+
+    expect([operationMock isExecuting]).to.beTruthy();
 }
 
 - (void)testThatACanceledOperaitonDoesNotExecute
 {
-    id partialMock = OCMPartialMock(self.operation);
-    OCMStub([partialMock isCancelled]).andReturn(YES);
-    
-    [[partialMock reject] execute];
-    
-    [partialMock start];
-    
-    OCMVerifyAll(partialMock);
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock isCancelled]).andReturn(YES);
+
+    [[operationMock reject] execute];
+
+    [operationMock start];
+
+    OCMVerifyAll(operationMock);
 }
 
 - (void)testThatACanceledOperaitonCallsFinish
 {
-    id partialMock = OCMPartialMock(self.operation);
-    OCMStub([partialMock isCancelled]).andReturn(YES);
-    OCMStub([partialMock finish]);
-    
-    [partialMock start];
-    
-    OCMVerify([partialMock finish]);
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock isCancelled]).andReturn(YES);
+    OCMStub([operationMock finish]);
+
+    [operationMock start];
+
+    OCMVerify([operationMock finish]);
 }
 
 - (void)testThatFinishSetsIsFinishedToYes
 {
-    id partialMock = OCMPartialMock(self.operation);
-    
-    expect([partialMock isFinished]).to.beFalsy();
-    
-    [partialMock finish];
-    
-    expect([partialMock isFinished]).to.beTruthy();
+    id operationMock = OCMPartialMock(self.operation);
+
+    expect([operationMock isFinished]).to.beFalsy();
+
+    [operationMock finish];
+
+    expect([operationMock isFinished]).to.beTruthy();
 }
 
 - (void)testThatFinishSetsIsExecutingToNo
 {
-    id partialMock = OCMPartialMock(self.operation);
-    OCMStub([partialMock execute]);
-    
-    [partialMock start];
-    
-    expect([partialMock isExecuting]).to.beTruthy();
-    
-    [partialMock finish];
-    
-    expect([partialMock isExecuting]).to.beFalsy();
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock execute]);
+
+    [operationMock start];
+
+    expect([operationMock isExecuting]).to.beTruthy();
+
+    [operationMock finish];
+
+    expect([operationMock isExecuting]).to.beFalsy();
 }
 
 - (void)testThatStartCallsExecute
 {
-    id mockOperation = OCMPartialMock(self.operation);
-    OCMStub([mockOperation execute]);
-    
-    [mockOperation start];
-    
-    OCMVerify([mockOperation execute]);
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock execute]);
+
+    [operationMock start];
+
+    OCMVerify([operationMock execute]);
 }
 
-- (void)testThatExecuteCallsFinish
+- (void)testThatExecuteCallsFinishWithResult
 {
-    id mockOperation = OCMPartialMock(self.operation);
-    OCMStub([mockOperation finish]);
-    
-    [mockOperation execute];
-    
-    OCMVerify([mockOperation finish]);
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock finishWithResult:OCMOCK_ANY]);
+
+    [operationMock execute];
+
+    OCMVerify([operationMock finishWithResult:nil]);
 }
 
 #pragma mark Delegate Call Convenience Methods
 
 - (void)testThatFinishWithResultCallsFinish
 {
-    id mockOperation = OCMPartialMock(self.operation);
-    OCMStub([mockOperation finish]);
-    
-    [mockOperation finishWithResult:nil];
-    
-    OCMVerify([mockOperation finish]);
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock finish]);
+
+    [operationMock finishWithResult:nil];
+
+    OCMVerify([operationMock finish]);
 }
 
 - (void)testThatFinishWithErrorCallsFinish
 {
-    id mockOperation = OCMPartialMock(self.operation);
-    OCMStub([mockOperation finish]);
-    
-    [mockOperation finishWithError:nil];
-    
-    OCMVerify([mockOperation finish]);
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock finish]);
+
+    [operationMock finishWithError:nil];
+
+    OCMVerify([operationMock finish]);
 }
 
 #pragma mark Delegate Tests
 
 - (void)testThatFinishWithResultInformsDelegateOfCompletionWithResult
 {
-    id delegateMock = OCMProtocolMock(@protocol(TWGOperationDelegate));
-    self.operation.delegate = delegateMock;
-    
+    id mockDelegate = OCMProtocolMock(@protocol(TWGOperationDelegate));
+    self.operation.delegate = mockDelegate;
+
     id mockResult = OCMClassMock([NSObject class]);
-    
+
     [self.operation finishWithResult:mockResult];
-    
-    OCMVerify([delegateMock operation:self.operation didCompleteWithResult:mockResult]);
+
+    OCMVerify([mockDelegate operation:self.operation didCompleteWithResult:mockResult]);
 }
 
 - (void)testThatFinishWithNilResultInformsDelegateOfCompletionWithNil
 {
-    id delegateMock = OCMProtocolMock(@protocol(TWGOperationDelegate));
-    self.operation.delegate = delegateMock;
-    
+    id mockDelegate = OCMProtocolMock(@protocol(TWGOperationDelegate));
+    self.operation.delegate = mockDelegate;
+
     [self.operation finishWithResult:nil];
-    
-    OCMVerify([delegateMock operation:self.operation didCompleteWithResult:nil]);
+
+    OCMVerify([mockDelegate operation:self.operation didCompleteWithResult:nil]);
 }
 
 - (void)testThatFinishWithErrorInformsDelegateOfCompletionWithError
 {
-    id delegateMock = OCMProtocolMock(@protocol(TWGOperationDelegate));
-    self.operation.delegate = delegateMock;
-    
+    id mockDelegate = OCMProtocolMock(@protocol(TWGOperationDelegate));
+    self.operation.delegate = mockDelegate;
+
     id mockError = OCMClassMock([NSError class]);
-    
+
     [self.operation finishWithError:mockError];
-    
-    OCMVerify([delegateMock operation:self.operation didFailWithError:mockError]);
+
+    OCMVerify([mockDelegate operation:self.operation didFailWithError:mockError]);
 }
 
 - (void)testThatFinishWithNilErrorInformsDelefateOfCompletionWithNilError
 {
-    id delegateMock = OCMProtocolMock(@protocol(TWGOperationDelegate));
-    self.operation.delegate = delegateMock;
-    
+    id mockDelegate = OCMProtocolMock(@protocol(TWGOperationDelegate));
+    self.operation.delegate = mockDelegate;
+
     [self.operation finishWithError:nil];
-    
-    OCMVerify([delegateMock operation:self.operation didFailWithError:nil]);
+
+    OCMVerify([mockDelegate operation:self.operation didFailWithError:nil]);
 }
 
+- (void)testThatStartSetsStartTime
+{
+    id operationMock = OCMPartialMock(self.operation);
+    OCMStub([operationMock execute]);
+
+    expect(self.operation.startTime).to.equal(0);
+	
+	[operationMock start];
+	
+	expect(self.operation.startTime).toNot.equal(0);
+}
+
+- (void)testThatFinishSetsEndTime
+{
+	expect(self.operation.endTime).to.equal(0);
+	
+	[self.operation finish];
+	
+	expect(self.operation.endTime).toNot.equal(0);
+}
 
 @end

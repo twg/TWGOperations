@@ -38,6 +38,26 @@
                ReferencedContainer = "container:TWGOperations.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "65274B551C1B55AA00DF0112"
+               BuildableName = "TWGOperations_Performance_Tests.xctest"
+               BlueprintName = "TWGOperations_Performance_Tests"
+               ReferencedContainer = "container:TWGOperations.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "65274B711C1B55BB00DF0112"
+               BuildableName = "TWGOperations_Integration_Tests.xctest"
+               BlueprintName = "TWGOperations_Integration_Tests"
+               ReferencedContainer = "container:TWGOperations.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

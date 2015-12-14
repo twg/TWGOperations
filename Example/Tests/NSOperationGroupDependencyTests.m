@@ -53,7 +53,7 @@
 
 - (void)testThatItDoesNotCallAddDependencyWithEmptyArray
 {
-    id operationMock = OCMPartialMock(self.operation);
+	id operationMock = OCMPartialMock(self.operation);
     [[operationMock reject] addDependency:OCMOCK_ANY];
     
     [operationMock addDependencies:@[]];

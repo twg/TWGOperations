@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BA30843DF62D220EFC47D68 /* Pods_TWGOperations_Performance_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD766E48CA39581A1547ED46 /* Pods_TWGOperations_Performance_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -19,6 +20,21 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		65274B541C1B2BA300DF0112 /* TWGSortOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65274B531C1B2BA300DF0112 /* TWGSortOperation.m */; };
+		65274B611C1B55AA00DF0112 /* TWGOperationSpeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65274B501C1B28B800DF0112 /* TWGOperationSpeedTests.m */; };
+		65274B641C1B55AA00DF0112 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
+		65274B651C1B55AA00DF0112 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
+		65274B661C1B55AA00DF0112 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
+		65274B671C1B55AA00DF0112 /* Pods_TWGOperations_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3989207F100083F8F7CCDBD /* Pods_TWGOperations_Tests.framework */; };
+		65274B691C1B55AA00DF0112 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		65274B7A1C1B55BB00DF0112 /* TWGGroupOperationIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB41C0CE82100298710 /* TWGGroupOperationIntegrationTests.m */; };
+		65274B7E1C1B55BB00DF0112 /* TWGOperationIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB21C0CE35100298710 /* TWGOperationIntegrationTests.m */; };
+		65274B801C1B55BB00DF0112 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
+		65274B811C1B55BB00DF0112 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
+		65274B821C1B55BB00DF0112 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
+		65274B831C1B55BB00DF0112 /* Pods_TWGOperations_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3989207F100083F8F7CCDBD /* Pods_TWGOperations_Tests.framework */; };
+		65274B851C1B55BB00DF0112 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		65274B921C1B62FB00DF0112 /* NSObjectPerformBlockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65274B911C1B62FB00DF0112 /* NSObjectPerformBlockTests.m */; };
 		652D20671BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D20661BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m */; };
 		654E24A01C08EF6400088ECD /* DelegateCallbackOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E249F1C08EF6400088ECD /* DelegateCallbackOperation.m */; };
 		654E24A71C08F11600088ECD /* TWGModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E24A51C08F11600088ECD /* TWGModalViewController.m */; };
@@ -31,8 +47,6 @@
 		65868DF01BF381B800445B22 /* GatherSearchStringOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DEF1BF381B800445B22 /* GatherSearchStringOperation.m */; };
 		65868DF31BF3842E00445B22 /* ImageViewSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65868DF21BF3842E00445B22 /* ImageViewSearchOperation.m */; };
 		659D06121BC8563C00AD5D94 /* TWGOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659D06111BC8563C00AD5D94 /* TWGOperationTests.m */; };
-		65C96CB31C0CE35100298710 /* TWGOperationIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB21C0CE35100298710 /* TWGOperationIntegrationTests.m */; };
-		65C96CB51C0CE82100298710 /* TWGGroupOperationIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB41C0CE82100298710 /* TWGGroupOperationIntegrationTests.m */; };
 		65C96CB91C0CE8D200298710 /* FailingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CB81C0CE8D200298710 /* FailingOperation.m */; };
 		65C96CBC1C0CE91E00298710 /* SucceedingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CBB1C0CE91E00298710 /* SucceedingOperation.m */; };
 		65C96CBF1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C96CBE1C0CEB4C00298710 /* DelegateForwardingGroupOperation.m */; };
@@ -48,6 +62,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D9AA1F761715D79A38170162 /* Pods_TWGOperations_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3670CFAC791ED6F8AEDD4C2C /* Pods_TWGOperations_Example.framework */; };
 		E60DD27D35A9D15962599F58 /* Pods_TWGOperations_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3989207F100083F8F7CCDBD /* Pods_TWGOperations_Tests.framework */; };
+		F202D0D32DDD7FDFD472A2FB /* Pods_TWGOperations_Integration_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E05F13C1D220520180CF4CD /* Pods_TWGOperations_Integration_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +73,25 @@
 			remoteGlobalIDString = 6003F589195388D20070C39A;
 			remoteInfo = TWGOperations;
 		};
+		65274B571C1B55AA00DF0112 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6003F589195388D20070C39A;
+			remoteInfo = TWGOperations;
+		};
+		65274B731C1B55BB00DF0112 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6003F589195388D20070C39A;
+			remoteInfo = TWGOperations;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		08219E256687B16A3EFFF9B0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		1E05F13C1D220520180CF4CD /* Pods_TWGOperations_Integration_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TWGOperations_Integration_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3670CFAC791ED6F8AEDD4C2C /* Pods_TWGOperations_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TWGOperations_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* TWGOperations_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWGOperations_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,6 +111,14 @@
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		65274B501C1B28B800DF0112 /* TWGOperationSpeedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGOperationSpeedTests.m; sourceTree = "<group>"; };
+		65274B521C1B2BA300DF0112 /* TWGSortOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWGSortOperation.h; sourceTree = "<group>"; };
+		65274B531C1B2BA300DF0112 /* TWGSortOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWGSortOperation.m; sourceTree = "<group>"; };
+		65274B6F1C1B55AA00DF0112 /* TWGOperations_Performance_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TWGOperations_Performance_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65274B701C1B55AB00DF0112 /* TWGOperations_Tests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TWGOperations_Tests copy-Info.plist"; path = "/Users/njkuhne/Documents/TWG/TWGOperations/Example/TWGOperations_Tests copy-Info.plist"; sourceTree = "<absolute>"; };
+		65274B8B1C1B55BB00DF0112 /* TWGOperations_Integration_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TWGOperations_Integration_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65274B8C1C1B55BC00DF0112 /* TWGOperations Tests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TWGOperations Tests copy-Info.plist"; path = "/Users/njkuhne/Documents/TWG/TWGOperations/Example/TWGOperations Tests copy-Info.plist"; sourceTree = "<absolute>"; };
+		65274B911C1B62FB00DF0112 /* NSObjectPerformBlockTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectPerformBlockTests.m; sourceTree = "<group>"; };
 		652D20651BEBF50C006FD6C7 /* GoogleImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleImageDownloadOperation.h; sourceTree = "<group>"; };
 		652D20661BEBF50C006FD6C7 /* GoogleImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleImageDownloadOperation.m; sourceTree = "<group>"; };
 		654E249E1C08EF6400088ECD /* DelegateCallbackOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateCallbackOperation.h; sourceTree = "<group>"; };
@@ -131,6 +169,7 @@
 		B171C1434CD1F7C40228276D /* Pods-TWGOperations_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWGOperations_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TWGOperations_Tests/Pods-TWGOperations_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4E5FC55ABACBF03F5B76C6B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B55BD336AEE980698DEB2625 /* TWGOperations.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TWGOperations.podspec; path = ../TWGOperations.podspec; sourceTree = "<group>"; };
+		BD766E48CA39581A1547ED46 /* Pods_TWGOperations_Performance_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TWGOperations_Performance_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FB5228216F678B17465487 /* Pods-TWGOperations_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWGOperations_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TWGOperations_Example/Pods-TWGOperations_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +196,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65274B631C1B55AA00DF0112 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65274B641C1B55AA00DF0112 /* XCTest.framework in Frameworks */,
+				65274B651C1B55AA00DF0112 /* UIKit.framework in Frameworks */,
+				65274B661C1B55AA00DF0112 /* Foundation.framework in Frameworks */,
+				65274B671C1B55AA00DF0112 /* Pods_TWGOperations_Tests.framework in Frameworks */,
+				5BA30843DF62D220EFC47D68 /* Pods_TWGOperations_Performance_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65274B7F1C1B55BB00DF0112 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65274B801C1B55BB00DF0112 /* XCTest.framework in Frameworks */,
+				65274B811C1B55BB00DF0112 /* UIKit.framework in Frameworks */,
+				65274B821C1B55BB00DF0112 /* Foundation.framework in Frameworks */,
+				65274B831C1B55BB00DF0112 /* Pods_TWGOperations_Tests.framework in Frameworks */,
+				F202D0D32DDD7FDFD472A2FB /* Pods_TWGOperations_Integration_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -169,6 +232,8 @@
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				990A581A16373AD667B3D7C5 /* Pods */,
+				65274B701C1B55AB00DF0112 /* TWGOperations_Tests copy-Info.plist */,
+				65274B8C1C1B55BC00DF0112 /* TWGOperations Tests copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,6 +242,8 @@
 			children = (
 				6003F58A195388D20070C39A /* TWGOperations_Example.app */,
 				6003F5AE195388D20070C39A /* TWGOperations_Tests.xctest */,
+				65274B6F1C1B55AA00DF0112 /* TWGOperations_Performance_Tests.xctest */,
+				65274B8B1C1B55BB00DF0112 /* TWGOperations_Integration_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,6 +257,8 @@
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				3670CFAC791ED6F8AEDD4C2C /* Pods_TWGOperations_Example.framework */,
 				A3989207F100083F8F7CCDBD /* Pods_TWGOperations_Tests.framework */,
+				1E05F13C1D220520180CF4CD /* Pods_TWGOperations_Integration_Tests.framework */,
+				BD766E48CA39581A1547ED46 /* Pods_TWGOperations_Performance_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,9 +296,11 @@
 				65DEA2741C0641410023D11A /* TWGGroupOperationTests.m */,
 				65DEA2701C0634DD0023D11A /* TWGDelayOperationTests.m */,
 				65DEA26E1C0632770023D11A /* NSOperationGroupDependencyTests.m */,
+				65274B911C1B62FB00DF0112 /* NSObjectPerformBlockTests.m */,
 				65DFF3CA1C15F3910054B827 /* TWGGroupOperationImpliedDependencyTests.m */,
 				65DEA2721C063B130023D11A /* TWGGroupCallbackOperationTests.m */,
 				65DFF3CC1C15F3D70054B827 /* Integration */,
+				65274B4F1C1B289300DF0112 /* Speed */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -252,6 +323,14 @@
 				08219E256687B16A3EFFF9B0 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		65274B4F1C1B289300DF0112 /* Speed */ = {
+			isa = PBXGroup;
+			children = (
+				65274B501C1B28B800DF0112 /* TWGOperationSpeedTests.m */,
+			);
+			name = Speed;
 			sourceTree = "<group>";
 		};
 		654E24AC1C08F6CC00088ECD /* Modal */ = {
@@ -282,6 +361,8 @@
 				65C96CC11C0CEB6B00298710 /* ReportingOperation.m */,
 				65DFF3CD1C1606080054B827 /* CompletionOrderReportOperation.h */,
 				65DFF3CE1C1606080054B827 /* CompletionOrderReportOperation.m */,
+				65274B521C1B2BA300DF0112 /* TWGSortOperation.h */,
+				65274B531C1B2BA300DF0112 /* TWGSortOperation.m */,
 			);
 			name = Testing;
 			sourceTree = "<group>";
@@ -394,6 +475,48 @@
 			productReference = 6003F5AE195388D20070C39A /* TWGOperations_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		65274B551C1B55AA00DF0112 /* TWGOperations_Performance_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65274B6C1C1B55AA00DF0112 /* Build configuration list for PBXNativeTarget "TWGOperations_Performance_Tests" */;
+			buildPhases = (
+				65274B581C1B55AA00DF0112 /* Check Pods Manifest.lock */,
+				65274B591C1B55AA00DF0112 /* Sources */,
+				65274B631C1B55AA00DF0112 /* Frameworks */,
+				65274B681C1B55AA00DF0112 /* Resources */,
+				65274B6A1C1B55AA00DF0112 /* Embed Pods Frameworks */,
+				65274B6B1C1B55AA00DF0112 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65274B561C1B55AA00DF0112 /* PBXTargetDependency */,
+			);
+			name = TWGOperations_Performance_Tests;
+			productName = TWGOperationsTests;
+			productReference = 65274B6F1C1B55AA00DF0112 /* TWGOperations_Performance_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		65274B711C1B55BB00DF0112 /* TWGOperations_Integration_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65274B881C1B55BB00DF0112 /* Build configuration list for PBXNativeTarget "TWGOperations_Integration_Tests" */;
+			buildPhases = (
+				65274B741C1B55BB00DF0112 /* Check Pods Manifest.lock */,
+				65274B751C1B55BB00DF0112 /* Sources */,
+				65274B7F1C1B55BB00DF0112 /* Frameworks */,
+				65274B841C1B55BB00DF0112 /* Resources */,
+				65274B861C1B55BB00DF0112 /* Embed Pods Frameworks */,
+				65274B871C1B55BB00DF0112 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65274B721C1B55BB00DF0112 /* PBXTargetDependency */,
+			);
+			name = TWGOperations_Integration_Tests;
+			productName = TWGOperationsTests;
+			productReference = 65274B8B1C1B55BB00DF0112 /* TWGOperations_Integration_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -424,6 +547,8 @@
 			targets = (
 				6003F589195388D20070C39A /* TWGOperations_Example */,
 				6003F5AD195388D20070C39A /* TWGOperations_Tests */,
+				65274B711C1B55BB00DF0112 /* TWGOperations_Integration_Tests */,
+				65274B551C1B55AA00DF0112 /* TWGOperations_Performance_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -448,6 +573,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65274B681C1B55AA00DF0112 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65274B691C1B55AA00DF0112 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65274B841C1B55BB00DF0112 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65274B851C1B55BB00DF0112 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -464,6 +605,96 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TWGOperations_Tests/Pods-TWGOperations_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65274B581C1B55AA00DF0112 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		65274B6A1C1B55AA00DF0112 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TWGOperations_Performance_Tests/Pods-TWGOperations_Performance_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65274B6B1C1B55AA00DF0112 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TWGOperations_Performance_Tests/Pods-TWGOperations_Performance_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65274B741C1B55BB00DF0112 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		65274B861C1B55BB00DF0112 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TWGOperations_Integration_Tests/Pods-TWGOperations_Integration_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65274B871C1B55BB00DF0112 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TWGOperations_Integration_Tests/Pods-TWGOperations_Integration_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		65A496E7DCF8E1FE4A86406E /* Copy Pods Resources */ = {
@@ -553,6 +784,7 @@
 				6003F59E195388D20070C39A /* TWGAppDelegate.m in Sources */,
 				65DFF3CF1C1606080054B827 /* CompletionOrderReportOperation.m in Sources */,
 				65DEA27B1C0656930023D11A /* GETOperation.m in Sources */,
+				65274B541C1B2BA300DF0112 /* TWGSortOperation.m in Sources */,
 				654E24A01C08EF6400088ECD /* DelegateCallbackOperation.m in Sources */,
 				6003F5A7195388D20070C39A /* TWGViewController.m in Sources */,
 				65868DF31BF3842E00445B22 /* ImageViewSearchOperation.m in Sources */,
@@ -578,11 +810,27 @@
 				65DEA2711C0634DD0023D11A /* TWGDelayOperationTests.m in Sources */,
 				659D06121BC8563C00AD5D94 /* TWGOperationTests.m in Sources */,
 				65DFF3CB1C15F3910054B827 /* TWGGroupOperationImpliedDependencyTests.m in Sources */,
+				65274B921C1B62FB00DF0112 /* NSObjectPerformBlockTests.m in Sources */,
 				65DEA2731C063B130023D11A /* TWGGroupCallbackOperationTests.m in Sources */,
-				65C96CB51C0CE82100298710 /* TWGGroupOperationIntegrationTests.m in Sources */,
 				65DEA2751C0641410023D11A /* TWGGroupOperationTests.m in Sources */,
 				65DEA26F1C0632770023D11A /* NSOperationGroupDependencyTests.m in Sources */,
-				65C96CB31C0CE35100298710 /* TWGOperationIntegrationTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65274B591C1B55AA00DF0112 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65274B611C1B55AA00DF0112 /* TWGOperationSpeedTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65274B751C1B55BB00DF0112 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65274B7A1C1B55BB00DF0112 /* TWGGroupOperationIntegrationTests.m in Sources */,
+				65274B7E1C1B55BB00DF0112 /* TWGOperationIntegrationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +841,16 @@
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* TWGOperations_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+		65274B561C1B55AA00DF0112 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6003F589195388D20070C39A /* TWGOperations_Example */;
+			targetProxy = 65274B571C1B55AA00DF0112 /* PBXContainerItemProxy */;
+		};
+		65274B721C1B55BB00DF0112 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6003F589195388D20070C39A /* TWGOperations_Example */;
+			targetProxy = 65274B731C1B55BB00DF0112 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -764,6 +1022,90 @@
 			};
 			name = Release;
 		};
+		65274B6D1C1B55AA00DF0112 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B171C1434CD1F7C40228276D /* Pods-TWGOperations_Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TWGOperations_Tests copy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWGOperations_Example.app/TWGOperations_Example";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		65274B6E1C1B55AA00DF0112 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABF8BE5B3D59CC1EA9CC7844 /* Pods-TWGOperations_Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				INFOPLIST_FILE = "TWGOperations_Tests copy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWGOperations_Example.app/TWGOperations_Example";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		65274B891C1B55BB00DF0112 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B171C1434CD1F7C40228276D /* Pods-TWGOperations_Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TWGOperations Tests copy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWGOperations_Example.app/TWGOperations_Example";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		65274B8A1C1B55BB00DF0112 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABF8BE5B3D59CC1EA9CC7844 /* Pods-TWGOperations_Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				INFOPLIST_FILE = "TWGOperations Tests copy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWGOperations_Example.app/TWGOperations_Example";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -790,6 +1132,24 @@
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
 				6003F5C4195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65274B6C1C1B55AA00DF0112 /* Build configuration list for PBXNativeTarget "TWGOperations_Performance_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65274B6D1C1B55AA00DF0112 /* Debug */,
+				65274B6E1C1B55AA00DF0112 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65274B881C1B55BB00DF0112 /* Build configuration list for PBXNativeTarget "TWGOperations_Integration_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65274B891C1B55BB00DF0112 /* Debug */,
+				65274B8A1C1B55BB00DF0112 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

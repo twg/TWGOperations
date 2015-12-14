@@ -245,4 +245,21 @@
     OCMVerifyAll(self.mockGroupCallbackOperation);
 }
 
+- (void)testThatCancelCancelesAllOperationsOnOperationQueue
+{
+	[self.operation cancel];
+	
+	OCMVerify([self.mockOperationQueue cancelAllOperations]);
+}
+
+- (void)testThatCancelCallsFinish
+{
+	id operationMock = OCMPartialMock(self.operation);
+	OCMStub([operationMock finish]);
+	
+	[operationMock cancel];
+	
+	OCMVerify([operationMock finish]);
+}
+
 @end

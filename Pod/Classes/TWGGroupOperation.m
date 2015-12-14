@@ -72,6 +72,13 @@
     }
 }
 
+- (void)cancel
+{
+    [super cancel];
+    [self.operationQueue cancelAllOperations];
+    [self finish];
+}
+
 - (NSOperationQueue *)operationQueue
 {
     if(_operationQueue == nil) {
