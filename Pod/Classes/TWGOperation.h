@@ -15,29 +15,33 @@
 @property(nonatomic, weak) id<TWGOperationDelegate> delegate;
 
 /*
- subclasses override this for execution
+ Subclasses override this for execution
  */
 - (void)execute;
 
 /*
- subclasses can call this to complete or use the convenience methods below
+ Subclasses can call this to complete or use the convenience methods below
  */
 - (void)finish;
 
 /*
- convenience completion
+ Convenience completion
 
- subclasses can use these as short hand for the process:
- - inform delegate of complete or fail
- - finish
+ Subclasses should use these as short hand for the process:
+ 1. Inform delegate of complete or fail
+ 2. -finish
  */
 - (void)finishWithResult:(id)result;
 - (void)finishWithError:(NSError *)error;
 
 
 /*
- returns the duration time for the operaiton either current or after completion
- the total
+ Returns the execution time for the operation under the following conditions
+ 1. The Operation is finished
+	This returns the duration of executaion from -start to -finish
+ 2. The operation is executing
+	This returns the duration of executaion since -start to NOW
+	
  */
 @property(nonatomic, readonly) NSTimeInterval executionDuration;
 
