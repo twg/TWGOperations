@@ -53,13 +53,13 @@
 
 - (void)finishWithResult:(id)result
 {
-    self.callbackOperation.result = result;
+    [self.callbackOperation configureValueForResult:result];
     [self cancelAllRemainingOperations];
 }
 
 - (void)finishWithError:(NSError *)error
 {
-    self.callbackOperation.error = error;
+    [self.callbackOperation configureValueForError:error];
     [self cancelAllRemainingOperations];
 }
 

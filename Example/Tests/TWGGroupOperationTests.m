@@ -150,7 +150,7 @@
     
     [self.operation finishWithResult:mockResult];
     
-    OCMVerify([self.mockGroupCallbackOperation setResult:mockResult]);
+    OCMVerify([self.mockGroupCallbackOperation configureValueForResult:mockResult]);
 }
 
 - (void)testThatFinishWithResultCallsCancelAllRemainingOperations
@@ -173,7 +173,7 @@
     
     [self.operation finishWithError:mockError];
     
-    OCMVerify([self.mockGroupCallbackOperation setError:mockError]);
+    OCMVerify([self.mockGroupCallbackOperation configureValueForError:mockError]);
 }
 
 - (void)testThatFinishWithErrorCallsCancelAllRemainingOperations

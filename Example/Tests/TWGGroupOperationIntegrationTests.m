@@ -92,7 +92,7 @@
     OCMVerify([self.mockDelegate operation:operation didCompleteWithResult:mockResult]);
 }
 
-- (void)testThatProxyDelegateNotifiesCompletionWithFailureOfParentOperation
+- (void)testThatProxyDelegateNotifiesCompletionWithFailureOfParentOperationWithError
 {
     FailingOperation *subOperation = [[FailingOperation alloc] init];
     id mockError = OCMClassMock([NSError class]);
@@ -106,6 +106,20 @@
     [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
     
     OCMVerify([self.mockDelegate operation:operation didFailWithError:mockError]);
+}
+
+- (void)testThatProxyDelegateNotifiesCompletionWithFailureOfParentOperationWhenErrorIsNil
+{
+    FailingOperation *subOperation = [[FailingOperation alloc] init];
+    
+    DelegateForwardingGroupOperation *operation = [[DelegateForwardingGroupOperation alloc] initWithOperations:@[subOperation]];
+    operation.delegate = self.mockDelegate;
+    
+    subOperation.delegate = operation;
+    
+    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
+    
+    OCMVerify([self.mockDelegate operation:operation didFailWithError:nil]);
 }
 
 - (void)testThatAFinishedOperationLetsADependentOperationRun
