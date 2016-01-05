@@ -32,13 +32,13 @@
     }
 }
 
-- (void)setupForError:(NSError *)error
+- (void)configureValueForError:(NSError *)error
 {
     self.action = TWGGroupCallbackOperationActionError;
     self.value = error;
 }
 
-- (void)setupForResult:(id)result
+- (void)configureValueForResult:(id)result
 {
     self.action = TWGGroupCallbackOperationActionSuccess;
     self.value = result;
