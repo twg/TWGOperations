@@ -12,13 +12,8 @@
  This operation is used by TWGGroupOperation for delegate callbacks
  */
 typedef NS_ENUM(NSUInteger, TWGGroupCallbackOperationAction) {
-    TWGGroupCallbackOperationActionNotSet = 0,
-    TWGGroupCallbackOperationActionError,
-    TWGGroupCallbackOperationActionSuccess
-};
-
-typedef NS_ENUM(NSUInteger, TWGGroupCallbackOperationError) {
-    TWGGroupCallbackOperationErrorActionNotSet = 0,
+    TWGGroupCallbackOperationActionSuccess = 0,
+    TWGGroupCallbackOperationActionError
 };
 
 @interface TWGGroupCallbackOperation : TWGOperation

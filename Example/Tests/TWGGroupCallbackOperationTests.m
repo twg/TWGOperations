@@ -130,24 +130,6 @@
     expect(self.operation.value).to.equal(mockResult);
 }
 
-- (void)testThatExecuteWithActionNotSetCallsFinishWithError
-{
-    id operationMock = OCMPartialMock(self.operation);
-    OCMExpect([operationMock finishWithError:[OCMArg checkWithBlock:^BOOL(id obj) {
-                                 if ([obj isKindOfClass:[NSError class]]) {
-                                     NSError *error = (NSError *)obj;
-                                     if (error.code == TWGGroupCallbackOperationErrorActionNotSet) {
-                                         return YES;
-                                     }
-                                 }
-                                 return NO;
-                             }]]);
-
-    [operationMock execute];
-
-    OCMVerifyAll(operationMock);
-}
-
 #pragma mark delegate tests
 
 - (void)testThatFinishWithResultCallsProxyDelegateWithProxyAndResult

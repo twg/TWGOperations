@@ -13,22 +13,13 @@
 - (void)execute
 {
     switch (self.action) {
-    case TWGGroupCallbackOperationActionSuccess:
-        [self finishWithResult:self.value];
-        break;
-
     case TWGGroupCallbackOperationActionError:
         [self finishWithError:self.value];
         break;
-
-    case TWGGroupCallbackOperationActionNotSet:
-    default: {
-        NSError *error = [NSError errorWithDomain:NSStringFromClass([self class])
-                                             code:TWGGroupCallbackOperationErrorActionNotSet
-                                         userInfo:nil];
-        [self finishWithError:error];
+    default:
+    case TWGGroupCallbackOperationActionSuccess:
+        [self finishWithResult:self.value];
         break;
-    }
     }
 }
 
