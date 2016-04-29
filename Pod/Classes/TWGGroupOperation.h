@@ -7,7 +7,6 @@
 //
 
 #import "TWGOperation.h"
-@class TWGGroupCallbackOperation;
 
 @interface TWGGroupOperation : TWGOperation
 
@@ -18,11 +17,10 @@
  subclasses need create sub-operations then [super initWithOperations:]
  to have them execute
  */
-- (instancetype) initWithOperations:(NSArray<NSOperation*>*)operations;
+- (instancetype)initWithOperations:(NSArray<NSOperation *> *)operations;
 
 /*
- See TWGBaseOperation for further subclassing instructions
+ See TWGOperation for further subclassing instructions
  */
-
 
 @end

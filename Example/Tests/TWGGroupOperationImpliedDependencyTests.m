@@ -7,9 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <TWGOperations/TWGOperations-umbrella.h>
-#import <OCMock/OCMock.h>
+@import TWGOperations;
 #import <Expecta/Expecta.h>
+#import <OCMock/OCMock.h>
 
 @interface TWGGroupOperationImpliedDependencyTests : XCTestCase
 
@@ -19,73 +19,71 @@
 
 @implementation TWGGroupOperationImpliedDependencyTests
 
-- (void)setUp {
+- (void)setUp
+{
     [super setUp];
-    
+
     self.operation = [[TWGGroupOperation alloc] init];
-    
 }
 
-- (void)tearDown {
+- (void)tearDown
+{
 
     self.operation = nil;
-    
+
     [super tearDown];
 }
-
 
 - (void)testThatInitWithOperationsIsCalled
 {
     id operationMock = OCMPartialMock(self.operation);
     OCMStub([operationMock initWithOperations:OCMOCK_ANY]).andReturn(operationMock);
-    
+
     id mockOperation1 = OCMClassMock([NSOperation class]);
     id mockOperation2 = OCMClassMock([NSOperation class]);
     id mockOperation3 = OCMClassMock([NSOperation class]);
-    
-    NSArray *operations = @[mockOperation1, mockOperation2, mockOperation3];
-    
+
+    NSArray *operations = @[ mockOperation1, mockOperation2, mockOperation3 ];
+
     operationMock = [operationMock initWithSerialOperations:operations];
-    
+
     OCMVerify([operationMock initWithOperations:operations]);
 }
-
 
 - (void)testThatOperationsGetsAllPreviousOperationsAddedAsDependencies
 {
     id operationMock = OCMPartialMock(self.operation);
     OCMStub([operationMock initWithOperations:OCMOCK_ANY]).andReturn(operationMock);
-    
+
     id mockOperation1 = OCMClassMock([NSOperation class]);
     id mockOperation2 = OCMClassMock([NSOperation class]);
     id mockOperation3 = OCMClassMock([NSOperation class]);
-    
-    NSArray *operations = @[mockOperation1, mockOperation2, mockOperation3];
-    NSArray *dependantOperations = @[mockOperation1, mockOperation2];
-    
+
+    NSArray *operations = @[ mockOperation1, mockOperation2, mockOperation3 ];
+    NSArray *dependantOperations = @[ mockOperation1, mockOperation2 ];
+
     [[mockOperation3 expect] addDependencies:dependantOperations];
-    
+
     operationMock = [operationMock initWithSerialOperations:operations];
-    
+
     OCMVerifyAll(mockOperation3);
 }
-
 
 - (void)testThatTheFirstOperationGetsDoesNotGetAnyDependencies
 {
     id operationMock = OCMPartialMock(self.operation);
     OCMStub([operationMock initWithOperations:OCMOCK_ANY]).andReturn(operationMock);
-    
+
     id mockOperation1 = OCMClassMock([NSOperation class]);
     id mockOperation2 = OCMClassMock([NSOperation class]);
     id mockOperation3 = OCMClassMock([NSOperation class]);
-    
-    NSArray *operations = @[mockOperation1, mockOperation2, mockOperation3];
-    
+
+    NSArray *operations = @[ mockOperation1, mockOperation2, mockOperation3 ];
+
     [[mockOperation1 reject] addDependencies:OCMOCK_ANY];
-    
+
     operationMock = [operationMock initWithSerialOperations:operations];
-    
+
     OCMVerifyAll(mockOperation1);
 }
 

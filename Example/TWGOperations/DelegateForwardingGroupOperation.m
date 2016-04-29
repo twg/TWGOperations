@@ -10,7 +10,6 @@
 
 @implementation DelegateForwardingGroupOperation
 
-
 - (void)operation:(TWGOperation *)operation didCompleteWithResult:(id)result
 {
     [self finishWithResult:result];

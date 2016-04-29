@@ -8,32 +8,42 @@
 
 #import "GETOperation.h"
 
+@interface GETOperation ()
+
+@property (nonatomic, strong) NSURLSession *session;
+
+@end
+
 @implementation GETOperation
 
 - (void)execute
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
-    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data,
-                                                                                               NSURLResponse * _Nullable response,
-                                                                                               NSError * _Nullable error) {
-        if(error) {
-            [self finishWithError:error];
-        }
-        else if(data) {
-            [self finishWithResult:data];
-        }
-    }];
-    
+    NSURLSessionDataTask *task = [self.session
+        dataTaskWithRequest:request
+          completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+              if (error) {
+                  [self finishWithError:error];
+              }
+              else if (data) {
+                  [self finishWithResult:[self parsedObject:data]];
+              }
+          }];
+
     [task resume];
+}
+
+- (id)parsedObject:(NSData *)data
+{
+	return data;
 }
 
 - (NSURLSession *)session
 {
-    if(_session == nil) {
+    if (_session == nil) {
         _session = [NSURLSession sharedSession];
     }
     return _session;
 }
-
 
 @end

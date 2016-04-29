@@ -6,7 +6,7 @@
 //  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import <TWGOperations/TWGOperations-umbrella.h>
+@import TWGOperations;
 
 @interface SucceedingOperation : TWGOperation
 @property (nonatomic, strong) id result;

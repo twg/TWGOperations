@@ -6,13 +6,15 @@
 //
 //
 
+#import "NSObject+PerformBlock.h"
+#import "NSOperation+GroupDependencies.h"
 #import <Foundation/Foundation.h>
 
 @protocol TWGOperationDelegate;
 
 @interface TWGOperation : NSOperation
 
-@property(nonatomic, weak) id<TWGOperationDelegate> delegate;
+@property (nonatomic, weak) id<TWGOperationDelegate> delegate;
 
 /*
  Subclasses override this for execution
@@ -33,20 +35,6 @@
  */
 - (void)finishWithResult:(id)result;
 - (void)finishWithError:(NSError *)error;
-
-
-/*
- Returns the execution time for the operation under the following conditions
- 1. The Operation is finished
-	This returns the duration of executaion from -start to -finish
- 2. The operation is executing
-	This returns the duration of executaion since -start to NOW
-	
- */
-@property(nonatomic, readonly) NSTimeInterval executionDuration;
-
-@property(nonatomic, assign, readonly) clock_t startTime;
-@property(nonatomic, assign, readonly) clock_t endTime;
 
 @end
 

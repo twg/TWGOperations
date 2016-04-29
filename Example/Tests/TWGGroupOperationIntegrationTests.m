@@ -7,14 +7,14 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <TWGOperations/TWGOperations-umbrella.h>
-#import <OCMock/OCMock.h>
-#import <Expecta/Expecta.h>
-#import "SucceedingOperation.h"
+@import TWGOperations;
+#import "CompletionOrderReportOperation.h"
+#import "DelegateForwardingGroupOperation.h"
 #import "FailingOperation.h"
 #import "ReportingOperation.h"
-#import "DelegateForwardingGroupOperation.h"
-#import "CompletionOrderReportOperation.h"
+#import "SucceedingOperation.h"
+#import <Expecta/Expecta.h>
+#import <OCMock/OCMock.h>
 
 @interface TWGGroupOperationIntegrationTests : XCTestCase
 
@@ -25,18 +25,19 @@
 
 @implementation TWGGroupOperationIntegrationTests
 
-- (void)setUp {
+- (void)setUp
+{
     [super setUp];
-    
+
     self.operationQueue = [[NSOperationQueue alloc] init];
     self.mockDelegate = OCMProtocolMock(@protocol(TWGOperationDelegate));
 }
 
-- (void)tearDown {
-    
+- (void)tearDown
+{
     self.operationQueue = nil;
     self.mockDelegate = nil;
-    
+
     [super tearDown];
 }
 
@@ -47,14 +48,15 @@
     SucceedingOperation *subOperation1 = [[SucceedingOperation alloc] init];
     ReportingOperation *subOperation2 = [[ReportingOperation alloc] init];
     [subOperation2 addDependency:subOperation1];
-    
-    DelegateForwardingGroupOperation *operation = [[DelegateForwardingGroupOperation alloc] initWithOperations:@[subOperation1, subOperation2]];
-    
+
+    DelegateForwardingGroupOperation *operation =
+        [[DelegateForwardingGroupOperation alloc] initWithOperations:@[ subOperation1, subOperation2 ]];
+
     subOperation1.delegate = operation;
     subOperation2.delegate = operation;
-    
-    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
-    
+
+    [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
+
     expect(subOperation2.didRun).to.beFalsy();
 }
 
@@ -63,14 +65,15 @@
     FailingOperation *subOperation1 = [[FailingOperation alloc] init];
     ReportingOperation *subOperation2 = [[ReportingOperation alloc] init];
     [subOperation2 addDependency:subOperation1];
-    
-    DelegateForwardingGroupOperation *operation = [[DelegateForwardingGroupOperation alloc] initWithOperations:@[subOperation1, subOperation2]];
-    
+
+    DelegateForwardingGroupOperation *operation =
+        [[DelegateForwardingGroupOperation alloc] initWithOperations:@[ subOperation1, subOperation2 ]];
+
     subOperation1.delegate = operation;
     subOperation2.delegate = operation;
-    
-    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
-    
+
+    [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
+
     expect(subOperation2.didRun).to.beFalsy();
 }
 
@@ -81,14 +84,15 @@
     SucceedingOperation *subOperation = [[SucceedingOperation alloc] init];
     id mockResult = OCMClassMock([NSObject class]);
     subOperation.result = mockResult;
-    
-    DelegateForwardingGroupOperation *operation = [[DelegateForwardingGroupOperation alloc] initWithOperations:@[subOperation]];
+
+    DelegateForwardingGroupOperation *operation =
+        [[DelegateForwardingGroupOperation alloc] initWithOperations:@[ subOperation ]];
     operation.delegate = self.mockDelegate;
-    
+
     subOperation.delegate = operation;
-    
-    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
-    
+
+    [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
+
     OCMVerify([self.mockDelegate operation:operation didCompleteWithResult:mockResult]);
 }
 
@@ -97,59 +101,62 @@
     FailingOperation *subOperation = [[FailingOperation alloc] init];
     id mockError = OCMClassMock([NSError class]);
     subOperation.error = mockError;
-    
-    DelegateForwardingGroupOperation *operation = [[DelegateForwardingGroupOperation alloc] initWithOperations:@[subOperation]];
+
+    DelegateForwardingGroupOperation *operation =
+        [[DelegateForwardingGroupOperation alloc] initWithOperations:@[ subOperation ]];
     operation.delegate = self.mockDelegate;
-    
+
     subOperation.delegate = operation;
-    
-    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
-    
+
+    [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
+
     OCMVerify([self.mockDelegate operation:operation didFailWithError:mockError]);
 }
 
 - (void)testThatProxyDelegateNotifiesCompletionWithFailureOfParentOperationWhenErrorIsNil
 {
     FailingOperation *subOperation = [[FailingOperation alloc] init];
-    
-    DelegateForwardingGroupOperation *operation = [[DelegateForwardingGroupOperation alloc] initWithOperations:@[subOperation]];
+
+    DelegateForwardingGroupOperation *operation =
+        [[DelegateForwardingGroupOperation alloc] initWithOperations:@[ subOperation ]];
     operation.delegate = self.mockDelegate;
-    
+
     subOperation.delegate = operation;
-    
-    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
-    
+
+    [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
+
     OCMVerify([self.mockDelegate operation:operation didFailWithError:nil]);
 }
 
 - (void)testThatAFinishedOperationLetsADependentOperationRun
 {
     SucceedingOperation *subOperation = [[SucceedingOperation alloc] init];
-    TWGGroupOperation *operation = [[TWGGroupOperation alloc] initWithOperations:@[subOperation]];
-    
+    TWGGroupOperation *operation = [[TWGGroupOperation alloc] initWithOperations:@[ subOperation ]];
+
     ReportingOperation *dependantOperation = [[ReportingOperation alloc] init];
     [dependantOperation addDependency:operation];
-    
-    [self.operationQueue addOperations:@[operation, dependantOperation] waitUntilFinished:YES];
-    
+
+    [self.operationQueue addOperations:@[ operation, dependantOperation ] waitUntilFinished:YES];
+
     expect(dependantOperation.didRun).to.beTruthy();
 }
 
-#pragma mark Implied Dependency 
+#pragma mark Implied Dependency
 
-- (void) testThatImpliedDependencyRunsOperationsInSeries
+- (void)testThatImpliedDependencyRunsOperationsInSeries
 {
     TWGDelayOperation *subOperation1 = [TWGDelayOperation delayOperationWithDelay:0.1f];
     SucceedingOperation *subOperation2 = [[SucceedingOperation alloc] init];
     SucceedingOperation *subOperation3 = [[SucceedingOperation alloc] init];
-    
-    NSArray *operations = @[subOperation1, subOperation2, subOperation3];
-    
-    CompletionOrderReportOperation *operation = [[CompletionOrderReportOperation alloc] initWithSerialOperations:operations];
+
+    NSArray *operations = @[ subOperation1, subOperation2, subOperation3 ];
+
+    CompletionOrderReportOperation *operation =
+        [[CompletionOrderReportOperation alloc] initWithSerialOperations:operations];
     subOperation1.delegate = subOperation2.delegate = subOperation3.delegate = operation;
-    
-    [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
-    
+
+    [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
+
     expect(operation.completedOperations).to.equal(operations);
 }
 

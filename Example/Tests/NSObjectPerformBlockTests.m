@@ -7,9 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <TWGOperations/TWGOperations-umbrella.h>
-#import <OCMock/OCMock.h>
+@import TWGOperations;
 #import <Expecta/Expecta.h>
+#import <OCMock/OCMock.h>
 
 @interface NSObjectPerformBlockTests : XCTestCase
 
@@ -19,62 +19,63 @@
 
 @implementation NSObjectPerformBlockTests
 
-- (void)setUp {
-	[super setUp];
-	
-	self.object = [[NSObject alloc] init];
-	
+- (void)setUp
+{
+    [super setUp];
+
+    self.object = [[NSObject alloc] init];
 }
 
-- (void)tearDown {
-	
-	self.object = nil;
-	
-	[super tearDown];
-}
+- (void)tearDown
+{
 
+    self.object = nil;
+
+    [super tearDown];
+}
 
 - (void)testThatPerformBlockOnMainThreadRunsBlock
 {
-	id mockString = OCMClassMock([NSString class]);
-	
-	[self.object performBlockOnMainThread:^{
-		[mockString length];
-	} waitUntilDone:YES];
-	
-	OCMVerify([mockString length]);
-}
+    id mockObject = OCMClassMock([NSObject class]);
 
+    [self.object performBlockOnMainThread:^{
+        [mockObject hash];
+    }
+                            waitUntilDone:YES];
+
+    OCMVerify([mockObject hash]);
+}
 
 - (void)testThatPerformBlockOnMainThreadPerformsOnMainThread
 {
-	id mockString = OCMClassMock([NSString class]);
+	id mockObject = OCMClassMock([NSObject class]);
 	
 	[self.object performBlockOnMainThread:^{
 		if([NSThread isMainThread]) {
-			[mockString length];
+			[mockObject hash];
 		}
-	} waitUntilDone:YES];
+	}
+							waitUntilDone:YES];
 	
-	OCMVerify([mockString length]);
+	OCMVerify([mockObject hash]);
 }
 
 - (void)testThatPerformBLockOnMainThreadPerformsOnMainThreadWhenDispatchedFromBackground
 {
-	__block id mockString = OCMClassMock([NSString class]);
-	
-	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-		
-		[self.object performBlockOnMainThread:^{
-			if([NSThread isMainThread]) {
-				[mockString length];
-			}
-		} waitUntilDone:YES];
-		
-		
-	});
-	
-	OCMVerify([mockString length]);
+    __block id mockObject = OCMClassMock([NSObject class]);
+
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+
+        [self.object performBlockOnMainThread:^{
+            if ([NSThread isMainThread]) {
+                [mockObject hash];
+            }
+        }
+                                waitUntilDone:YES];
+
+    });
+
+    OCMVerify([mockObject hash]);
 }
 
 @end
