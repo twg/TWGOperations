@@ -12,9 +12,9 @@
 
 - (NSURL *)url
 {
-	return [NSURL URLWithString:@"https://api.flickr.com/services/rest/"
-			@"?method=flickr.photos.getRecent&api_key=8d46b69cd963ef7544119d719de8ba9e&format="
-			@"json&nojsoncallback=1"];
+    return [NSURL URLWithString:@"https://api.flickr.com/services/rest/"
+                                @"?method=flickr.photos.getRecent&api_key=ee45c17f38db74644ecc1898e18c558a&format="
+                                @"json&nojsoncallback=1&safe_search=1"];
 }
 
 @end

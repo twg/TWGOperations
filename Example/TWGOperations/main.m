@@ -8,10 +8,24 @@
 
 @import UIKit;
 #import "AppDelegate.h"
+#import "TestingAppDelegate.h"
 
-int main(int argc, char * argv[])
+static BOOL isRunningTests(void)
+{
+    NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+    NSString *testing = environment[@"TESTING"];
+    return [testing isEqualToString:@"1"];
+}
+
+int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+
+        Class appDelegateClass = [AppDelegate class];
+        if (isRunningTests()) {
+            appDelegateClass = [TestingAppDelegate class];
+        }
+
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass(appDelegateClass));
     }
 }

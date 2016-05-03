@@ -20,6 +20,7 @@
 - (instancetype)initWithOperations:(NSArray<NSOperation *> *)operations;
 
 /*
+ Subclasses of TWGGroupOperation SHOULD NOT override -execute
  See TWGOperation for further subclassing instructions
  */
 

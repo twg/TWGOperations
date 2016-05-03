@@ -12,22 +12,22 @@
 
 - (void)execute
 {
-	if(self.numberOfPasses < self.maxPasses) {
-		self.numberOfPasses++;
-		[self finishWithResult:nil];
-	}
-	else {
-		[self finishWithError:nil];
-	}
+    if (self.numberOfPasses < self.maxPasses) {
+        self.numberOfPasses++;
+        [self finishWithResult:nil];
+    }
+    else {
+        [self finishWithError:nil];
+    }
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
-	CheckPassOperation *operation = [[[self class] alloc] init];
-	operation.delegate = self.delegate;
-	operation.maxPasses = self.maxPasses;
-	operation.numberOfPasses = self.numberOfPasses;
-	return operation;
+    CheckPassOperation *operation = [[[self class] alloc] init];
+    operation.delegate = self.delegate;
+    operation.maxPasses = self.maxPasses;
+    operation.numberOfPasses = self.numberOfPasses;
+    return operation;
 }
 
 @end

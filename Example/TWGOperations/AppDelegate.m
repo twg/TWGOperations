@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    HomeViewController *homeViewController = [[HomeViewController alloc] initWithStyle:UITableViewStylePlain];
+    HomeViewController *homeViewController = [[HomeViewController alloc] init];
 
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
 

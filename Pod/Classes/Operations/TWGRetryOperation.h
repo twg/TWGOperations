@@ -9,9 +9,12 @@
 #import "TWGGroupOperation.h"
 
 /*
- The TWGRetryOperation will "retry" by copying the operation object based on the result of checkOperation
- - checkOperaiton finishWithResult:nil signifies that the operation should try again
- - checkOperaiton finishWIthError:nil(or error) signifies that the operaiton should not be tried again
+ A TWGRetryOperation will "retry" by copying the operation object based on the result of checkOperation when the
+ initial operaiton has failed
+ - if the initial operationw as successful, the check operation is not run and a TWGRetryOperation will also
+ finishWithResult:
+ - checkOperaiton finishWithResult: signifies that the operation should try again
+ - checkOperaiton finishWIthError: signifies that the operaiton should not be tried again
  */
 
 @interface TWGRetryOperation : TWGGroupOperation <TWGOperationDelegate>

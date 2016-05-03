@@ -7,9 +7,19 @@
 //
 
 #import "HomeViewController.h"
-#import <TWGOperations/TWGOperation.h>
+@import TWGOperations;
+#import "DownloadFlickrFeedOperation.h"
+#import "FlickrPhoto.h"
+#import "FlickrPhotoViewController.h"
+#import "GETCacheOperation.h"
+#import "PhotoThumbnailCell.h"
 
 @interface HomeViewController ()
+
+@property (nonatomic, strong) NSArray<FlickrPhoto *> *photos;
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
+
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @end
 
@@ -17,39 +27,99 @@ static NSString *CellReuseIdentifier = @"CellReuseIdentifier";
 
 @implementation HomeViewController
 
+- (instancetype)init
+{
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    flowLayout.minimumLineSpacing = flowLayout.minimumInteritemSpacing = 0.f;
+
+    self = [super initWithCollectionViewLayout:flowLayout];
+    if (self) {
+        self.flowLayout = flowLayout;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.clearsSelectionOnViewWillAppear = NO;
+    [self.collectionView registerClass:[PhotoThumbnailCell class] forCellWithReuseIdentifier:CellReuseIdentifier];
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
+    DownloadFlickrFeedOperation *operation = [[DownloadFlickrFeedOperation alloc] init];
+    operation.presentingViewController = self;
+
+    [operation completionOnMain:^(NSArray *photos) {
+        self.photos = photos;
+        [self.collectionView reloadData];
+    }];
+
+    [self.operationQueue addOperation:operation];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSOperationQueue *)operationQueue
 {
-	return 1;
+    if (_operationQueue == nil) {
+        _operationQueue = [[NSOperationQueue alloc] init];
+        _operationQueue.qualityOfService = NSQualityOfServiceUtility;
+    }
+    return _operationQueue;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return [self.photos count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier forIndexPath:indexPath];
+    PhotoThumbnailCell *cell =
+        [collectionView dequeueReusableCellWithReuseIdentifier:CellReuseIdentifier forIndexPath:indexPath];
 
-	cell.textLabel.text = [NSString stringWithFormat:@"Index:%ld", (long)indexPath.item];
+    FlickrPhoto *photo = [self.photos objectAtIndex:indexPath.item];
+    UIImage *thumbnail = photo.thumbnail;
+
+    if (!thumbnail) {
+        GETCacheOperation *operaiton = [[GETCacheOperation alloc] init];
+        operaiton.url = photo.thumbnailURL;
+
+        [operaiton completionOnMain:^(NSData *photoData) {
+            NSLog(@"Got thumbnail for photo ID:%@", photo.identifier);
+            photo.thumbnail = [UIImage imageWithData:photoData];
+            [collectionView reloadItemsAtIndexPaths:@[ indexPath ]];
+        }];
+
+        [self.operationQueue addOperation:operaiton];
+    }
+    else {
+        cell.imageView.image = thumbnail;
+    }
 
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 60.f;
+    CGFloat squareSize = floor(CGRectGetWidth(self.view.frame) / 3);
+    return CGSizeMake(squareSize, squareSize);
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    FlickrPhoto *photo = [self.photos objectAtIndex:indexPath.item];
+
+    FlickrPhotoViewController *photoViewController =
+        [[FlickrPhotoViewController alloc] initWithNibName:@"FlickrPhotoViewController" bundle:nil];
+    photoViewController.photo = photo;
+
+    [self.navigationController pushViewController:photoViewController animated:YES];
 }
 
 @end

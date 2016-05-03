@@ -7,8 +7,10 @@
 //
 
 @import TWGOperations;
+#import "GETRecentFlickrFeedOperation.h"
 
-@interface FetchFlickrFeedOperation : TWGGroupOperation
+@interface FetchFlickrFeedOperation : TWGGroupOperation <TWGOperationDelegate, NSCopying>
 
+@property (nonatomic, strong, readonly) GETRecentFlickrFeedOperation *fetchOperation;
 
 @end

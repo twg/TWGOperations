@@ -7,6 +7,7 @@
 //
 
 #import "NSOperation+Timing.h"
+#import "NSOperationKVOKeys.h"
 #import <objc/runtime.h>
 
 @interface NSOperationObserver : NSObject
@@ -20,8 +21,6 @@
                                 andReportBlock:(void (^)(NSTimeInterval duration))block;
 
 @end
-
-static NSString *kIsExecutingKey = @"isExecuting";
 
 @implementation NSOperationObserver
 
@@ -43,7 +42,10 @@ static NSString *kIsExecutingKey = @"isExecuting";
 - (void)beginObserving
 {
     if ([self.operation isExecuting] == NO) {
-        [self.operation addObserver:self forKeyPath:kIsExecutingKey options:NSKeyValueObservingOptionNew context:nil];
+        [self.operation addObserver:self
+                         forKeyPath:NSOperationIsExecuting
+                            options:NSKeyValueObservingOptionNew
+                            context:nil];
     }
 }
 
@@ -66,7 +68,7 @@ static NSString *kIsExecutingKey = @"isExecuting";
 
 - (void)dealloc
 {
-    [self.operation removeObserver:self forKeyPath:kIsExecutingKey context:nil];
+    [self.operation removeObserver:self forKeyPath:NSOperationIsExecuting context:nil];
 }
 
 @end

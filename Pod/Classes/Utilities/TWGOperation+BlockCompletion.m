@@ -67,7 +67,7 @@
 
 - (TWGOperation *)completion:(void (^)(id result))completion
 {
-	return [self addCompletion:completion onMain:NO];
+    return [self addCompletion:completion onMain:NO];
 }
 - (TWGOperation *)completionOnMain:(void (^)(id result))completion
 {
@@ -85,14 +85,14 @@
     blockDelegate.mainCompletion = onMain;
 
     self.blockDelegate = blockDelegate;
-	self.delegate = blockDelegate;
+    self.delegate = blockDelegate;
 
     return self;
 }
 
 - (TWGOperation *)failure:(void (^)(NSError *error))failure
 {
-	return [self addFailure:failure onMain:NO];
+    return [self addFailure:failure onMain:NO];
 }
 
 - (TWGOperation *)failureOnMain:(void (^)(NSError *error))failure
@@ -111,7 +111,7 @@
     blockDelegate.mainFailure = onMain;
 
     self.blockDelegate = blockDelegate;
-	self.delegate = blockDelegate;
+    self.delegate = blockDelegate;
 
     return self;
 }
@@ -124,12 +124,13 @@ static const char *TWG_OPERATION_BLOCK_DELEGATE_KEY = "TWG_OPERATION_BLOCK_DELEG
 
 - (TWGBlockDelegate *)blockDelegate
 {
-	return objc_getAssociatedObject(self, TWG_OPERATION_BLOCK_DELEGATE_KEY);
+    return objc_getAssociatedObject(self, TWG_OPERATION_BLOCK_DELEGATE_KEY);
 }
 
 - (void)setBlockDelegate:(TWGBlockDelegate *)blockDelegate
 {
-	objc_setAssociatedObject(self, TWG_OPERATION_BLOCK_DELEGATE_KEY, blockDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, TWG_OPERATION_BLOCK_DELEGATE_KEY, blockDelegate,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
