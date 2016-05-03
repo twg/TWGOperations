@@ -7,9 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <TWGOperations/TWGOperations-umbrella.h>
-#import <OCMock/OCMock.h>
+@import TWGOperations;
 #import <Expecta/Expecta.h>
+#import <OCMock/OCMock.h>
 
 @interface NSOperationGroupDependencyTests : XCTestCase
 
@@ -19,17 +19,18 @@
 
 @implementation NSOperationGroupDependencyTests
 
-- (void)setUp {
+- (void)setUp
+{
     [super setUp];
-    
+
     self.operation = [[NSOperation alloc] init];
-    
 }
 
-- (void)tearDown {
-    
+- (void)tearDown
+{
+
     self.operation = nil;
-    
+
     [super tearDown];
 }
 
@@ -39,13 +40,13 @@
 {
     id operationMock = OCMPartialMock(self.operation);
     OCMStub([operationMock addDependency:OCMOCK_ANY]);
-    
+
     id mockOperation1 = OCMClassMock([NSOperation class]);
     id mockOperation2 = OCMClassMock([NSOperation class]);
     id mockOperation3 = OCMClassMock([NSOperation class]);
-    
-    [operationMock addDependencies:@[mockOperation1, mockOperation2, mockOperation3]];
-    
+
+    [operationMock addDependencies:@[ mockOperation1, mockOperation2, mockOperation3 ]];
+
     OCMVerify([operationMock addDependency:mockOperation1]);
     OCMVerify([operationMock addDependency:mockOperation2]);
     OCMVerify([operationMock addDependency:mockOperation3]);
@@ -53,11 +54,11 @@
 
 - (void)testThatItDoesNotCallAddDependencyWithEmptyArray
 {
-	id operationMock = OCMPartialMock(self.operation);
+    id operationMock = OCMPartialMock(self.operation);
     [[operationMock reject] addDependency:OCMOCK_ANY];
-    
+
     [operationMock addDependencies:@[]];
-    
+
     OCMVerifyAll(operationMock);
 }
 
@@ -65,9 +66,9 @@
 {
     id operationMock = OCMPartialMock(self.operation);
     [[operationMock reject] addDependency:OCMOCK_ANY];
-    
+
     [operationMock addDependencies:nil];
-    
+
     OCMVerifyAll(operationMock);
 }
 

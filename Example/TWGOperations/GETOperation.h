@@ -6,12 +6,12 @@
 //  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import <TWGOperations/TWGOperations-umbrella.h>
+@import TWGOperations;
 
 @interface GETOperation : TWGOperation
 
 @property (nonatomic, strong) NSURL *url;
 
-@property (nonatomic, strong) NSURLSession *session;
+- (id)parsedObject:(NSData *)data;
 
 @end

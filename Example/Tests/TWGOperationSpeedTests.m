@@ -6,8 +6,8 @@
 //  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
+#import "SortOperation.h"
 #import <XCTest/XCTest.h>
-#import "TWGSortOperation.h"
 
 @interface TWGOperationSpeedTests : XCTestCase
 
@@ -17,94 +17,88 @@
 
 @implementation TWGOperationSpeedTests
 
-- (void)setUp {
+- (void)setUp
+{
     [super setUp];
-    
+
     self.operationQueue = [[NSOperationQueue alloc] init];
-    
 }
 
-- (void)tearDown {
-    
+- (void)tearDown
+{
     self.operationQueue = nil;
-    
+
     sleep(0.5);
-    
+
     [super tearDown];
 }
 
-- (void)testBareMetalSortBaseline
+- (void)testAMillionObjectsBareMetalSortBaseline
 {
     __block NSArray *sortedArray = nil;
-    
+
     NSArray *millionObjects = [self millionObjects];
-    
+
     [self measureBlock:^{
         sortedArray = [SortableObject sortedArrayOfSortableObjects:millionObjects];
     }];
 }
 
-
 - (void)testAMillionObjectsSortOperationOnBackgroundQOS
 {
     self.operationQueue.qualityOfService = NSQualityOfServiceBackground;
-    
+
     NSArray *millionObjects = [self millionObjects];
-    
+
     [self measureBlock:^{
-        TWGSortOperation *operation = [[TWGSortOperation alloc] init];
+        SortOperation *operation = [[SortOperation alloc] init];
         operation.objects = millionObjects;
-        
-        [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
+
+        [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
     }];
-    
 }
 
 - (void)testAMillionObjectsSortOperationOnUtilityQOS
 {
     self.operationQueue.qualityOfService = NSQualityOfServiceUtility;
-    
+
     NSArray *millionObjects = [self millionObjects];
-    
+
     [self measureBlock:^{
-        TWGSortOperation *operation = [[TWGSortOperation alloc] init];
+        SortOperation *operation = [[SortOperation alloc] init];
         operation.objects = millionObjects;
-        
-        [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
+
+        [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
     }];
-    
 }
 
 - (void)testAMillionObjectsSortOperationOnUserInitiatedQOS
 {
     self.operationQueue.qualityOfService = NSQualityOfServiceUserInitiated;
-    
+
     NSArray *millionObjects = [self millionObjects];
-    
+
     [self measureBlock:^{
-        TWGSortOperation *operation = [[TWGSortOperation alloc] init];
+        SortOperation *operation = [[SortOperation alloc] init];
         operation.objects = millionObjects;
-        
-        [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
+
+        [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
     }];
-    
 }
 
 - (void)testAMillionObjectsSortOperationOnUserInteractiveQOS
 {
     self.operationQueue.qualityOfService = NSQualityOfServiceUserInteractive;
-    
-    NSArray *millionObjects = [self millionObjects];
-    
-    [self measureBlock:^{
-        TWGSortOperation *operation = [[TWGSortOperation alloc] init];
-        operation.objects = millionObjects;
-        
-        [self.operationQueue addOperations:@[operation] waitUntilFinished:YES];
-    }];
-    
-}
 
+    NSArray *millionObjects = [self millionObjects];
+
+    [self measureBlock:^{
+        SortOperation *operation = [[SortOperation alloc] init];
+        operation.objects = millionObjects;
+
+        [self.operationQueue addOperations:@[ operation ] waitUntilFinished:YES];
+    }];
+}
 
 - (NSArray *)millionObjects
 {

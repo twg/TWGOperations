@@ -6,7 +6,7 @@
 //  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import <TWGOperations/TWGOperations-umbrella.h>
+@import TWGOperations;
 
 @interface FailingOperation : TWGOperation
 @property (nonatomic, strong) NSError *error;

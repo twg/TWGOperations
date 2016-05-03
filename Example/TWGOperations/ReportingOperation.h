@@ -6,10 +6,14 @@
 //  Copyright © 2015 Nicholas Kuhne. All rights reserved.
 //
 
-#import <TWGOperations/TWGOperations-umbrella.h>
+@import TWGOperations;
 
-@interface ReportingOperation : TWGOperation
+@interface ReportingOperation : TWGOperation <NSCopying>
 
+@property (nonatomic, assign) BOOL shouldFail;
+
+// Not copied, specific to each instance
 @property (nonatomic, assign) BOOL didRun;
+@property (nonatomic, assign) BOOL wasCopied;
 
 @end

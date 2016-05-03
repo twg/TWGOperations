@@ -8,7 +8,7 @@
 
 #import <Expecta/Expecta.h>
 #import <OCMock/OCMock.h>
-#import <TWGOperations/TWGOperations-umbrella.h>
+@import TWGOperations;
 #import <XCTest/XCTest.h>
 
 @interface TWGGroupCallbackOperationTests : XCTestCase

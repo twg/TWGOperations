@@ -8,7 +8,7 @@
 
 #import <Expecta/Expecta.h>
 #import <OCMock/OCMock.h>
-#import <TWGOperations/TWGOperations-umbrella.h>
+@import TWGOperations;
 #import <XCTest/XCTest.h>
 
 @interface TWGOperationTests : XCTestCase
@@ -182,27 +182,6 @@
     [self.operation finishWithError:nil];
 
     OCMVerify([mockDelegate operation:self.operation didFailWithError:nil]);
-}
-
-- (void)testThatStartSetsStartTime
-{
-    id operationMock = OCMPartialMock(self.operation);
-    OCMStub([operationMock execute]);
-
-    expect(self.operation.startTime).to.equal(0);
-	
-	[operationMock start];
-	
-	expect(self.operation.startTime).toNot.equal(0);
-}
-
-- (void)testThatFinishSetsEndTime
-{
-	expect(self.operation.endTime).to.equal(0);
-	
-	[self.operation finish];
-	
-	expect(self.operation.endTime).toNot.equal(0);
 }
 
 @end

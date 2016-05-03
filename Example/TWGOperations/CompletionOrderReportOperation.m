@@ -12,8 +12,9 @@
 
 - (void)operation:(TWGOperation *)operation didCompleteWithResult:(id)result
 {
-    @synchronized(self) {
-        if(operation) {
+    @synchronized(self)
+    {
+        if (operation) {
             [self.completedOperations addObject:operation];
         }
     }
@@ -26,7 +27,7 @@
 
 - (NSMutableArray *)completedOperations
 {
-    if(_completedOperations == nil) {
+    if (_completedOperations == nil) {
         _completedOperations = [NSMutableArray new];
     }
     return _completedOperations;
