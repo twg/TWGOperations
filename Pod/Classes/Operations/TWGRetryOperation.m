@@ -49,11 +49,11 @@
         [self finishWithResult:result];
     }
     else if (operation == self.checkOperation) {
-        TWGOperation<NSCopying> *fetchOperation = [self.operation copy];
+        TWGOperation<NSCopying> *operation = [self.operation copy];
         TWGOperation<NSCopying> *checkOperation = [self.checkOperation copy];
 
         TWGRetryOperation *retryOperation =
-            [[[self class] alloc] initWithOperation:fetchOperation andCheckOperation:checkOperation];
+            [[[self class] alloc] initWithOperation:operation andCheckOperation:checkOperation];
         retryOperation.delegate = self;
 
         self.retryOperation = retryOperation;

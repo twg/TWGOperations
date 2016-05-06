@@ -9,10 +9,10 @@
 #import "TWGOperation.h"
 
 /*
- This operation provides a way to create non waiting delays in a chain of operations
+ This operation provides a way to create non thread-blocking delays in a chain of operations
  */
 
-@interface TWGDelayOperation : TWGOperation
+@interface TWGDelayOperation : TWGOperation <NSCopying>
 
 @property (nonatomic, assign) NSTimeInterval delay;
 

@@ -35,7 +35,7 @@
 
 - (id)parsedObject:(NSData *)data
 {
-	return data;
+    return data;
 }
 
 - (NSURLSession *)session
@@ -44,6 +44,13 @@
         _session = [NSURLSession sharedSession];
     }
     return _session;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    GETOperation *operation = [[[self class] alloc] init];
+    operation.url = self.url;
+    return operation;
 }
 
 @end

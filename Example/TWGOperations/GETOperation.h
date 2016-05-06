@@ -8,7 +8,7 @@
 
 @import TWGOperations;
 
-@interface GETOperation : TWGOperation
+@interface GETOperation : TWGOperation <NSCopying>
 
 @property (nonatomic, strong) NSURL *url;
 

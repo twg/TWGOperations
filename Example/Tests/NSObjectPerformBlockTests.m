@@ -48,16 +48,16 @@
 
 - (void)testThatPerformBlockOnMainThreadPerformsOnMainThread
 {
-	id mockObject = OCMClassMock([NSObject class]);
-	
-	[self.object performBlockOnMainThread:^{
-		if([NSThread isMainThread]) {
-			[mockObject hash];
-		}
-	}
-							waitUntilDone:YES];
-	
-	OCMVerify([mockObject hash]);
+    id mockObject = OCMClassMock([NSObject class]);
+
+    [self.object performBlockOnMainThread:^{
+        if ([NSThread isMainThread]) {
+            [mockObject hash];
+        }
+    }
+                            waitUntilDone:YES];
+
+    OCMVerify([mockObject hash]);
 }
 
 - (void)testThatPerformBLockOnMainThreadPerformsOnMainThreadWhenDispatchedFromBackground

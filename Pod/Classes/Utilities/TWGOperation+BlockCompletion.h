@@ -10,10 +10,10 @@
 
 @interface TWGOperation (BlockCompletion)
 
-- (TWGOperation *)completion:(void(^)(id result))completion;
-- (TWGOperation *)completionOnMain:(void(^)(id result))completion;
+- (TWGOperation *)completion:(void (^)(id result))completion;
+- (TWGOperation *)completionOnMain:(void (^)(id result))completion;
 
-- (TWGOperation *)failure:(void(^)(NSError *error))failure;
-- (TWGOperation *)failureOnMain:(void(^)(NSError *error))failure;
+- (TWGOperation *)failure:(void (^)(NSError *error))failure;
+- (TWGOperation *)failureOnMain:(void (^)(NSError *error))failure;
 
 @end

@@ -10,6 +10,15 @@
 
 @implementation FlickrPhoto
 
++ (instancetype)photoFromDict:(NSDictionary *)dict
+{
+    FlickrPhoto *photo = [[FlickrPhoto alloc] init];
 
+    photo.identifier = dict[@"id"];
+    photo.farm = dict[@"farm"];
+    photo.server = dict[@"server"];
+
+    return photo;
+}
 
 @end

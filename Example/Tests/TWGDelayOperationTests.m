@@ -57,4 +57,23 @@
     expect(operation.delay).to.equal(delay);
 }
 
+- (void)testThatCopyingCopiesDelay
+{
+	self.operation.delay = 1.f;
+	
+	TWGDelayOperation *operationCopy = [self.operation copy];
+	
+	expect(operationCopy.delay).to.equal(1.f);
+}
+
+- (void)testThatCopyingCopiesDelegate
+{
+	id mockDelegate = OCMProtocolMock(@protocol(TWGOperationDelegate));
+	self.operation.delegate = mockDelegate;
+	
+	TWGDelayOperation *operationCopy = [self.operation copy];
+	
+	expect(operationCopy.delegate).to.equal(mockDelegate);
+}
+
 @end

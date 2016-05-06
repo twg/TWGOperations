@@ -13,6 +13,6 @@
 /*
 used to time the total duraiton of an execution of an NSOperation
 */
-- (void)clockAndReport:(void(^)(NSTimeInterval duration))reportBlock;
+- (void)clockAndReport:(void (^)(NSTimeInterval duration))reportBlock;
 
 @end

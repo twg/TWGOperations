@@ -13,13 +13,13 @@
 
 + (SortableObject *)randomValueObjectWithLimit:(NSUInteger)limit;
 
-+ (NSArray<SortableObject*>*)createSortableObjectsArrayOfSize:(NSUInteger)size;
-+ (NSArray *)sortedArrayOfSortableObjects:(NSArray<SortableObject*>*)objects;
++ (NSArray<SortableObject *> *)createSortableObjectsArrayOfSize:(NSUInteger)size;
++ (NSArray *)sortedArrayOfSortableObjects:(NSArray<SortableObject *> *)objects;
 
 @end
 
 @interface SortOperation : TWGOperation
 
-@property (nonatomic, strong) NSArray<SortableObject*> *objects;
+@property (nonatomic, strong) NSArray<SortableObject *> *objects;
 
 @end

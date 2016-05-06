@@ -6,10 +6,8 @@
 //
 //
 
+#import "NSOperationKVOKeys.h"
 #import "TWGOperation.h"
-
-static NSString *kIsExecutingKey = @"isExecuting";
-static NSString *kIsFinishedKey = @"isFinished";
 
 @implementation TWGOperation {
     BOOL _executing;
@@ -40,9 +38,10 @@ static NSString *kIsFinishedKey = @"isFinished";
 - (void)start
 {
     if ([self isCancelled] == NO) {
-        [self willChangeValueForKey:kIsExecutingKey];
+        [self willChangeValueForKey:NSOperationIsExecuting];
         _executing = YES;
-        [self didChangeValueForKey:kIsExecutingKey];
+        [self didChangeValueForKey:NSOperationIsExecuting];
+
         [self execute];
     }
     else {
@@ -57,13 +56,13 @@ static NSString *kIsFinishedKey = @"isFinished";
 
 - (void)finish
 {
-    [self willChangeValueForKey:kIsExecutingKey];
+    [self willChangeValueForKey:NSOperationIsExecuting];
     _executing = NO;
-    [self didChangeValueForKey:kIsExecutingKey];
+    [self didChangeValueForKey:NSOperationIsExecuting];
 
-    [self willChangeValueForKey:kIsFinishedKey];
+    [self willChangeValueForKey:NSOperationIsFinished];
     _finished = YES;
-    [self didChangeValueForKey:kIsFinishedKey];
+    [self didChangeValueForKey:NSOperationIsFinished];
 }
 
 #pragma mark convenience completions
