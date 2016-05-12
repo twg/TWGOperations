@@ -27,16 +27,13 @@
 + (instancetype)operationObserverWithOperation:(NSOperation *)operation
                                 andReportBlock:(void (^)(NSTimeInterval duration))block
 {
-    if ([operation isExecuting] == NO) {
-        NSOperationObserver *observer = [[NSOperationObserver alloc] init];
-        observer.operation = operation;
-        observer.block = block;
-
-        [observer beginObserving];
-
-        return observer;
-    }
-    return nil;
+	NSOperationObserver *observer = [[NSOperationObserver alloc] init];
+	observer.operation = operation;
+	observer.block = block;
+	
+	[observer beginObserving];
+	
+	return observer;
 }
 
 - (void)beginObserving

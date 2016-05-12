@@ -82,7 +82,8 @@
 {
     if (_operationQueue == nil) {
         _operationQueue = [[NSOperationQueue alloc] init];
-        [_operationQueue setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
+        _operationQueue.name = NSStringFromClass([self class]);
+        _operationQueue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
     }
     return _operationQueue;
 }

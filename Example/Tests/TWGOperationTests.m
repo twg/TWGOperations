@@ -184,4 +184,14 @@
     OCMVerify([mockDelegate operation:self.operation didFailWithError:nil]);
 }
 
+- (void)testThatIsConcurrentIsFalse
+{
+	expect([self.operation isConcurrent]).to.beFalsy();
+}
+
+- (void)testThatIsAsynchronousIsTrue
+{
+	expect([self.operation isAsynchronous]).to.beTruthy();
+}
+
 @end

@@ -100,6 +100,20 @@
     OCMVerify([operationMock finishWithError:nil]);
 }
 
+- (void)testThatExecuteCallsFinishWithResulyForAnUnknownAction
+{
+	self.operation.action = 100;
+	
+	id mockResult = OCMClassMock([NSObject class]);
+	
+	self.operation.value = mockResult;
+	id operationMock = OCMPartialMock(self.operation);
+	
+	[operationMock execute];
+	
+	OCMVerify([operationMock finishWithResult:mockResult]);
+}
+
 - (void)testThatConfigureValueForResultSetsTheValue
 {
     [self.operation configureValueForResult:nil];

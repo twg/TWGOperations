@@ -62,7 +62,6 @@
 
 - (void)tearDown
 {
-
     self.mockOperation1 = nil;
     self.mockOperation2 = nil;
     self.mockOperation3 = nil;
@@ -92,6 +91,17 @@
     TWGGroupOperation *groupOperation = [[TWGGroupOperation alloc] initWithOperations:operations];
 
     expect(groupOperation.operations).to.equal(operations);
+}
+
+- (void)testThatDefaultOperationQueueHasName
+{
+	id mockOperation = OCMClassMock([NSOperation class]);
+	
+	NSArray *operations = @[ mockOperation ];
+	
+	TWGGroupOperation *groupOperation = [[TWGGroupOperation alloc] initWithOperations:operations];
+	
+	expect(groupOperation.operationQueue.name).to.equal(@"TWGGroupOperation");
 }
 
 #pragma mark execute

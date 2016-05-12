@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C4EDCB46906B4781B4E24554'
+               BlueprintIdentifier = '93CBC551F399355EEBA9979F'
                BlueprintName = 'TWGOperations'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'TWGOperations.framework'>
