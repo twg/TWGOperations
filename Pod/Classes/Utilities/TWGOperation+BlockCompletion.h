@@ -8,12 +8,15 @@
 
 #import "TWGOperation.h"
 
+typedef void(^TWGOperationBlockCompletion)(id _Nullable result);
+typedef void(^TWGOperationBlockFailure)(NSError * _Nullable error);
+
 @interface TWGOperation (BlockCompletion)
 
-- (TWGOperation *)completion:(void (^)(id result))completion;
-- (TWGOperation *)completionOnMain:(void (^)(id result))completion;
+- (nonnull TWGOperation *)completion:(TWGOperationBlockCompletion _Nonnull)completion;
+- (nonnull TWGOperation *)completionOnMain:(TWGOperationBlockCompletion _Nonnull)completion;
 
-- (TWGOperation *)failure:(void (^)(NSError *error))failure;
-- (TWGOperation *)failureOnMain:(void (^)(NSError *error))failure;
+- (nonnull TWGOperation *)failure:(TWGOperationBlockFailure _Nonnull)failure;
+- (nonnull TWGOperation *)failureOnMain:(TWGOperationBlockFailure _Nonnull)failure;
 
 @end

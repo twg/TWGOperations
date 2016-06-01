@@ -16,6 +16,6 @@
 
 @property (nonatomic, assign) NSTimeInterval delay;
 
-+ (instancetype)delayOperationWithDelay:(NSTimeInterval)delay;
++ (nonnull instancetype)delayOperationWithDelay:(NSTimeInterval)delay;
 
 @end

@@ -144,9 +144,10 @@
 		didError = YES;
 	}];
 	
+	expect(didError).to.beFalsy();
+	
 	[self.operationQueue addOperations:@[ operation ] waitUntilFinished:NO];
 	
-	expect(didError).to.beFalsy();
 	expect(didError).will.beTruthy();
 }
 
@@ -164,9 +165,10 @@
 		
 	}];
 
+	expect(didComplete).to.beFalsy();
+	
     [self.operationQueue addOperations:@[ operation ] waitUntilFinished:NO];
 
-    expect(didComplete).to.beFalsy();
     expect(didComplete).will.beTruthy();
 }
 
@@ -182,9 +184,10 @@
         }
     }];
 
+	expect(didError).to.beFalsy();
+	
     [self.operationQueue addOperations:@[ operation ] waitUntilFinished:NO];
 
-    expect(didError).to.beFalsy();
     expect(didError).will.beTruthy();
 }
 

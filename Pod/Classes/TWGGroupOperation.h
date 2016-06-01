@@ -10,18 +10,19 @@
 
 @interface TWGGroupOperation : TWGOperation
 
-@property (nonatomic, strong, readonly) NSOperationQueue *operationQueue;
+@property (nonatomic, readonly, nonnull) NSOperationQueue *operationQueue;
 
 /*
  initWithOperations: adds operations passed to the operationQueue
  subclasses need create sub-operations then [super initWithOperations:]
  to have them execute
  */
-- (instancetype)initWithOperations:(NSArray<NSOperation *> *)operations;
+- (nonnull instancetype)initWithOperations:(nonnull NSArray<NSOperation *>  *)operations;
 
 /*
  Subclasses of TWGGroupOperation SHOULD NOT override -execute
  See TWGOperation for further subclassing instructions
  */
+- (void)execute NS_UNAVAILABLE;
 
 @end

@@ -11,7 +11,7 @@
 
 @implementation TWGGroupOperation (ImpliedDependency)
 
-- (instancetype)initWithSerialOperations:(NSArray<NSOperation *> *)operations
+- (nonnull instancetype)initWithSerialOperations:(nonnull NSArray<NSOperation *> *)operations
 {
     [operations enumerateObjectsWithOptions:NSEnumerationReverse
                                  usingBlock:^(NSOperation *_Nonnull operation, NSUInteger idx, BOOL *_Nonnull stop) {

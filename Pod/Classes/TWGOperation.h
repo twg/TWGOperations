@@ -1,5 +1,5 @@
 //
-//  TWGBaseOperation.h
+//  TWGOperation.h
 //  Pods
 //
 //  Created by Nicholas Kuhne on 2015-09-22.
@@ -10,21 +10,38 @@
 #import "NSOperation+GroupDependencies.h"
 #import <Foundation/Foundation.h>
 
-@protocol TWGOperationDelegate;
+@class TWGOperation;
+/*
+ TWGOperationDelegate for callbacks for completion and passing of result data
+ */
+@protocol TWGOperationDelegate <NSObject>
+
+- (void)operation:(nonnull TWGOperation *)operation didCompleteWithResult:(nullable id)result NS_SWIFT_NAME(operationDidComplete(operation:withResult:));
+- (void)operation:(nonnull TWGOperation *)operation didFailWithError:(nullable NSError *)error NS_SWIFT_NAME(operationDidFail(operation:withError:));
+
+@end
 
 @interface TWGOperation : NSOperation
 
-@property (nonatomic, weak) id<TWGOperationDelegate> delegate;
+@property (nonatomic, weak, nullable) id<TWGOperationDelegate> delegate;
+
+@end
+
+@interface TWGOperation (SubclassingHooks)
 
 /*
- Subclasses override this for execution
+ Override this to implement execution
  */
 - (void)execute;
 
 /*
- Subclasses can call this to complete or use the convenience methods below
+ TWGOperation subclasses must call this to complete execution of the operation
  */
 - (void)finish;
+
+@end
+
+@interface TWGOperation (QuickDelegate)
 
 /*
  Convenience completion
@@ -33,17 +50,7 @@
  1. Inform delegate of complete or fail
  2. -finish
  */
-- (void)finishWithResult:(id)result;
-- (void)finishWithError:(NSError *)error;
-
-@end
-
-/*
- TWGOperationDelegate for callbacks for completion and passing of result data
- */
-@protocol TWGOperationDelegate <NSObject>
-
-- (void)operation:(TWGOperation *)operation didCompleteWithResult:(id)result;
-- (void)operation:(TWGOperation *)operation didFailWithError:(NSError *)error;
+- (void)finishWithResult:(id _Nullable)result NS_SWIFT_NAME(finish(withResult:));
+- (void)finishWithError:(NSError * _Nullable)error NS_SWIFT_NAME(finish(withError:));
 
 @end

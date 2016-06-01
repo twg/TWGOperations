@@ -1,6 +1,0 @@
-framework module Pods_TWGOperations_Integration_Tests {
-  umbrella header "Pods-TWGOperations_Integration_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

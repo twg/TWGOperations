@@ -21,6 +21,6 @@
  A as a dependency of B
 
  */
-- (instancetype)initWithSerialOperations:(NSArray<NSOperation *> *)operations;
+- (nonnull instancetype)initWithSerialOperations:(nonnull NSArray<NSOperation *> *)operations;
 
 @end

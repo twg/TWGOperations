@@ -23,7 +23,7 @@
  Optionally provide a view controller for presetation, default is rootViewController of the key UIWindow
  Note: this operation will finishWithError: if the presentingViewController is already presenting
  */
-@property (weak, nonatomic) UIViewController *presentingViewController NS_AVAILABLE_IOS(8.0);
+@property (weak, nonatomic, nullable) UIViewController *presentingViewController NS_AVAILABLE_IOS(8.0);
 
 /*
  should the alery show a cancel button
@@ -33,9 +33,9 @@
 /*
  set text for title, message, and buttons in the alert
  */
-@property (strong, nonatomic) NSString *alertMessage;
-@property (strong, nonatomic) NSString *alertTitle;
-@property (strong, nonatomic) NSString *confirmText;
-@property (strong, nonatomic) NSString *cancelText;
+@property (strong, nonatomic, nullable) NSString *alertMessage;
+@property (strong, nonatomic, nullable) NSString *alertTitle;
+@property (strong, nonatomic, nullable) NSString *confirmText;
+@property (strong, nonatomic, nullable) NSString *cancelText;
 
 @end

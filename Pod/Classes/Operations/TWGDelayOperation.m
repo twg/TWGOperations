@@ -18,7 +18,7 @@
     });
 }
 
-- (id)copyWithZone:(NSZone *)zone
+- (nonnull id)copyWithZone:(nullable NSZone *)zone
 {
     TWGDelayOperation *operation = [[[self class] alloc] init];
     operation.delegate = self.delegate;
@@ -26,7 +26,7 @@
     return operation;
 }
 
-+ (instancetype)delayOperationWithDelay:(NSTimeInterval)delay
++ (nonnull instancetype)delayOperationWithDelay:(NSTimeInterval)delay
 {
     TWGDelayOperation *delayOperation = [[[self class] alloc] init];
     delayOperation.delay = delay;
