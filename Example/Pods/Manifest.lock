@@ -1,7 +1,7 @@
 PODS:
   - Expecta (1.0.5)
   - OCMock (3.2)
-  - TWGOperations (0.1.8)
+  - TWGOperations (1.0.0)
 
 DEPENDENCIES:
   - Expecta
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
-  TWGOperations: bbc09739613392d44a46a6ac715014baa3aca3be
+  TWGOperations: c9445067907f7c930fe30b44a140d7f8aebaf592
 
 PODFILE CHECKSUM: d58551e1bd58ef7cd01daf94531a8e4ecb85d6a5
 

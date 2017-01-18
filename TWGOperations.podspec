@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "TWGOperations"
-  s.version          = "0.1.8"
-  s.summary          = "TWGOperations is an NSOperation wrapper library"
+  s.version          = "1.0.0"
+  s.summary          = "TWGOperations is an Operation library"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,11 +21,9 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/twg/TWGOperations"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Nicholas Kuhne" => "njkuhne@me.com" }
   s.source           = { :git => "https://github.com/twg/TWGOperations.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
