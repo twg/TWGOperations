@@ -1,5 +1,5 @@
 //
-//  TWGBaseOperation.m
+//  TWGOperation.m
 //  Pods
 //
 //  Created by Nicholas Kuhne on 2015-09-22.
@@ -35,13 +35,24 @@
     return _finished;
 }
 
+- (void)setExecuting:(BOOL)executing
+{
+	[self willChangeValueForKey:NSOperationIsExecuting];
+	_executing = executing;
+	[self didChangeValueForKey:NSOperationIsExecuting];
+}
+
+- (void)setFinished:(BOOL)finished
+{
+	[self willChangeValueForKey:NSOperationIsFinished];
+	_finished = finished;
+	[self didChangeValueForKey:NSOperationIsFinished];
+}
+
 - (void)start
 {
     if ([self isCancelled] == NO) {
-        [self willChangeValueForKey:NSOperationIsExecuting];
-        _executing = YES;
-        [self didChangeValueForKey:NSOperationIsExecuting];
-
+		[self setExecuting:YES];
         [self execute];
     }
     else {
@@ -56,14 +67,13 @@
 
 - (void)finish
 {
-    [self willChangeValueForKey:NSOperationIsExecuting];
-    _executing = NO;
-    [self didChangeValueForKey:NSOperationIsExecuting];
-
-    [self willChangeValueForKey:NSOperationIsFinished];
-    _finished = YES;
-    [self didChangeValueForKey:NSOperationIsFinished];
+	[self setExecuting:NO];
+	[self setFinished:YES];
 }
+
+@end
+
+@implementation TWGOperation (QuickDelegate)
 
 #pragma mark convenience completions
 
@@ -78,7 +88,6 @@
 
 - (void)finishWithError:(NSError *)error
 {
-
     if ([self.delegate respondsToSelector:@selector(operation:didFailWithError:)]) {
         [self.delegate operation:self didFailWithError:error];
     }

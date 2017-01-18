@@ -11,9 +11,9 @@
 
 @interface TWGRetryOperation ()
 
-@property (nonatomic, strong) TWGOperation<NSCopying> *operation;
-@property (nonatomic, strong) TWGOperation<NSCopying> *checkOperation;
-@property (nonatomic, strong) TWGRetryOperation *retryOperation;
+@property (nonatomic, strong, nonnull) TWGOperation<NSCopying> *operation;
+@property (nonatomic, strong, nonnull) TWGOperation<NSCopying> *checkOperation;
+@property (nonatomic, strong, nullable) TWGRetryOperation *retryOperation;
 
 @property (nonatomic, strong) TWGOperation *placeholderOperation;
 
@@ -21,8 +21,8 @@
 
 @implementation TWGRetryOperation
 
-- (instancetype)initWithOperation:(TWGOperation<NSCopying> *)operation
-                andCheckOperation:(TWGOperation<NSCopying> *)checkOperation
+- (nonnull instancetype)initWithOperation:(nonnull TWGOperation<NSCopying> *)operation
+						andCheckOperation:(nonnull TWGOperation<NSCopying> *)checkOperation
 {
     TWGOperation *placeholderOperation = [[TWGOperation alloc] init];
 

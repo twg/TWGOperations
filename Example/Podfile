@@ -1,32 +1,22 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'TWGOperations_Example', :exclusive => true do
-  pod "TWGOperations", :path => "../"
-end
-
-target 'TWGOperations_Tests', :exclusive => true do
+target 'TWGOperations_Example' do
   pod "TWGOperations", :path => "../"
 
-  pod 'Specta'
-  pod 'Expecta'
-  pod 'OCMock'
-end
+  target 'TWGOperations_Tests' do
+    pod 'Expecta'
+    pod 'OCMock'
+  end
 
+  target 'TWGOperations_Integration_Tests' do
+    pod 'Expecta'
+    pod 'OCMock'
+  end
 
-target 'TWGOperations_Integration_Tests', :exclusive => true do
-  pod "TWGOperations", :path => "../"
+  target 'TWGOperations_Performance_Tests' do
+    pod 'Expecta'
+    pod 'OCMock'
+  end
 
-  pod 'Specta'
-  pod 'Expecta'
-  pod 'OCMock'
-end
-
-
-target 'TWGOperations_Performance_Tests', :exclusive => true do
-  pod "TWGOperations", :path => "../"
-
-  pod 'Specta'
-  pod 'Expecta'
-  pod 'OCMock'
 end

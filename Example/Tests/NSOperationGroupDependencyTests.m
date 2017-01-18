@@ -62,14 +62,4 @@
     OCMVerifyAll(operationMock);
 }
 
-- (void)testThatItDoesNotCallAddDependencyWithNilArray
-{
-    id operationMock = OCMPartialMock(self.operation);
-    [[operationMock reject] addDependency:OCMOCK_ANY];
-
-    [operationMock addDependencies:nil];
-
-    OCMVerifyAll(operationMock);
-}
-
 @end

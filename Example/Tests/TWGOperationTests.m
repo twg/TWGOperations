@@ -28,10 +28,19 @@
 
 - (void)tearDown
 {
-
     self.operation = nil;
 
     [super tearDown];
+}
+
+- (void)testThatIsConcurrentIsNo
+{
+	expect([self.operation isConcurrent]).to.beFalsy();
+}
+
+- (void)testThatIsAsynchronousIsYes
+{
+	expect([self.operation isAsynchronous]).to.beTruthy();
 }
 
 #pragma mark Internal Tests
@@ -43,7 +52,7 @@
 
     expect([operationMock isExecuting]).to.beFalsy();
 
-    [operationMock start];
+    [(TWGOperation *)operationMock start];
 
     expect([operationMock isExecuting]).to.beTruthy();
 }
@@ -55,7 +64,7 @@
 
     [[operationMock reject] execute];
 
-    [operationMock start];
+    [(TWGOperation *)operationMock start];
 
     OCMVerifyAll(operationMock);
 }
@@ -66,7 +75,7 @@
     OCMStub([operationMock isCancelled]).andReturn(YES);
     OCMStub([operationMock finish]);
 
-    [operationMock start];
+    [(TWGOperation *)operationMock start];
 
     OCMVerify([operationMock finish]);
 }
@@ -87,7 +96,7 @@
     id operationMock = OCMPartialMock(self.operation);
     OCMStub([operationMock execute]);
 
-    [operationMock start];
+    [(TWGOperation *)operationMock start];
 
     expect([operationMock isExecuting]).to.beTruthy();
 
@@ -101,7 +110,7 @@
     id operationMock = OCMPartialMock(self.operation);
     OCMStub([operationMock execute]);
 
-    [operationMock start];
+    [(TWGOperation *)operationMock start];
 
     OCMVerify([operationMock execute]);
 }

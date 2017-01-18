@@ -7,84 +7,83 @@
 //
 
 #import "NSOperation+GroupDependencies.h"
-#import "TWGGroupCallbackOperation.h"
+#import "NSOperationQueueKVOKeys.h"
 #import "TWGGroupOperation.h"
+
+static void * const TWGGroupOperationKVOContext = (void*)&TWGGroupOperationKVOContext;
 
 @interface TWGGroupOperation ()
 
-@property (nonatomic, strong, readwrite) NSOperationQueue *operationQueue;
-@property (nonatomic, strong) NSArray<NSOperation *> *operations;
-
-@property (nonatomic, strong) TWGGroupCallbackOperation *callbackOperation;
-@property (nonatomic, strong) NSBlockOperation *completionOperation;
+@property (nonatomic, strong, nonnull) NSOperationQueue *operationQueue;
+@property (nonatomic, strong, nonnull) NSArray<NSOperation *> *operations;
 
 @end
 
 @implementation TWGGroupOperation
 
-- (instancetype)initWithOperations:(NSArray<NSOperation *> *)operations
+- (nonnull instancetype)initWithOperations:(nonnull NSArray<NSOperation *>  *)operations
 {
     if (self = [super init]) {
         self.operations = operations;
+		self.operationQueue.suspended = YES;
+		
+		[self.operationQueue addObserver:self forKeyPath:NSOperationQueueOperationCount options:NSKeyValueChangeNewKey context:TWGGroupOperationKVOContext];
     }
     return self;
 }
 
 - (void)execute
 {
-    self.callbackOperation = [TWGGroupCallbackOperation groupCallbackOperationWithProxyOperation:self];
-
     if ([self.operations count]) {
-        [self.callbackOperation addDependencies:self.operations];
         [self.operationQueue addOperations:self.operations waitUntilFinished:NO];
+		self.operationQueue.suspended = NO;
     }
-
-    __weak typeof(self) weakSelf = self;
-    self.completionOperation = [NSBlockOperation blockOperationWithBlock:^{
-        [weakSelf finish];
-    }];
-
-    [self.completionOperation addDependency:self.callbackOperation];
-
-    [self.operationQueue addOperation:self.callbackOperation];
-    [self.operationQueue addOperation:self.completionOperation];
+	else {
+		[self finishWithError:nil];
+	}
 }
 
 - (void)finishWithResult:(id)result
 {
-    [self.callbackOperation configureValueForResult:result];
-    [self cancelAllRemainingOperations];
+	[super finishWithResult:result];
+	[self.operationQueue cancelAllOperations];
 }
 
 - (void)finishWithError:(NSError *)error
 {
-    [self.callbackOperation configureValueForError:error];
-    [self cancelAllRemainingOperations];
-}
-
-- (void)cancelAllRemainingOperations
-{
-    for (NSOperation *operation in self.operations) {
-        if (![operation isFinished] && ![operation isExecuting]) {
-            [operation cancel];
-        }
-    }
+	[super finishWithError:error];
+	[self.operationQueue cancelAllOperations];
 }
 
 - (void)cancel
 {
     [super cancel];
     [self.operationQueue cancelAllOperations];
-    [self finish];
+	[self finish];
 }
 
 - (NSOperationQueue *)operationQueue
 {
     if (_operationQueue == nil) {
         _operationQueue = [[NSOperationQueue alloc] init];
-        [_operationQueue setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
     }
     return _operationQueue;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+	if(context == TWGGroupOperationKVOContext) {
+		if(self.operationQueue.suspended == NO && self.operationQueue.operationCount == 0) {
+			if([self isExecuting]) {
+				[super finishWithResult:nil];
+			}
+		}
+	}
+}
+
+- (void)dealloc
+{
+	[self.operationQueue removeObserver:self forKeyPath:NSOperationQueueOperationCount];
 }
 
 @end

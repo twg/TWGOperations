@@ -19,12 +19,12 @@
 
 @interface TWGRetryOperation : TWGGroupOperation <TWGOperationDelegate>
 
-@property (nonatomic, strong, readonly) TWGOperation<NSCopying> *operation;
-@property (nonatomic, strong, readonly) TWGOperation<NSCopying> *checkOperation;
+@property (nonatomic, strong, readonly, nonnull) TWGOperation<NSCopying> *operation;
+@property (nonatomic, strong, readonly, nonnull) TWGOperation<NSCopying> *checkOperation;
 
-@property (nonatomic, strong, readonly) TWGRetryOperation *retryOperation;
+@property (nonatomic, strong, readonly, nullable) TWGRetryOperation *retryOperation;
 
-- (instancetype)initWithOperation:(TWGOperation<NSCopying> *)operation
-                andCheckOperation:(TWGOperation<NSCopying> *)checkOperation;
+- (nonnull instancetype)initWithOperation:(nonnull TWGOperation<NSCopying> *)operation
+                andCheckOperation:(nonnull TWGOperation<NSCopying> *)checkOperation;
 
 @end

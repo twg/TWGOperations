@@ -19,6 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	TWGOperation *operation = [[TWGOperation alloc] init];
+	[[NSOperationQueue mainQueue] addOperation:operation];
 }
 
 - (void)setPhoto:(FlickrPhoto *)photo
