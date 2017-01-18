@@ -27,7 +27,7 @@ static void * const TWGGroupOperationKVOContext = (void*)&TWGGroupOperationKVOCo
         self.operations = operations;
 		self.operationQueue.suspended = YES;
 		
-		[self.operationQueue addObserver:self forKeyPath:NSOperationQueueOperationCount options:NSKeyValueChangeNewKey context:TWGGroupOperationKVOContext];
+		[self.operationQueue addObserver:self forKeyPath:NSOperationQueueOperationCount options:NSKeyValueObservingOptionNew context:TWGGroupOperationKVOContext];
     }
     return self;
 }
