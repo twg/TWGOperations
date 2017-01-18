@@ -1,6 +1,6 @@
 # TWGOperations
 
-[![CI Status](http://img.shields.io/travis/Nicholas Kuhne/TWGOperations.svg?style=flat)](https://travis-ci.org/Nicholas Kuhne/TWGOperations)
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=587fd45d3caef4010058efb9&branch=develop&build=latest)](https://dashboard.buddybuild.com/apps/587fd45d3caef4010058efb9/build/latest?branch=develop)
 [![Version](https://img.shields.io/cocoapods/v/TWGOperations.svg?style=flat)](http://cocoapods.org/pods/TWGOperations)
 [![License](https://img.shields.io/cocoapods/l/TWGOperations.svg?style=flat)](http://cocoapods.org/pods/TWGOperations)
 [![Platform](https://img.shields.io/cocoapods/p/TWGOperations.svg?style=flat)](http://cocoapods.org/pods/TWGOperations)
