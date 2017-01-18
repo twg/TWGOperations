@@ -23,6 +23,5 @@
  Subclasses of TWGGroupOperation SHOULD NOT override -execute
  See TWGOperation for further subclassing instructions
  */
-- (void)execute NS_UNAVAILABLE;
 
 @end
