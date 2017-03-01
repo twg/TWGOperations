@@ -13,13 +13,9 @@
     "tag": "1.0.0"
   },
   "platforms": {
-    "ios": "7.0"
+    "ios": "8.0",
+    "tvos": "9.0"
   },
   "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "TWGOperations": [
-      "Pod/Assets/*.png"
-    ]
-  }
+  "source_files": "Pod/Classes/**/*"
 }
