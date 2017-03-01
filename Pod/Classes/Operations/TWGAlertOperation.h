@@ -9,7 +9,7 @@
 #import "TWGOperation.h"
 
 /*
- A TWGAlertOperation provides a UIAlertView or UIAlertController for notification on confirmation
+ A TWGAlertOperation provides a UIAlertController for notification on confirmation
 
  Subclassing Notes:
  You may find that subclassing a TWGAlertOperation to provide standard defaults for text options is a good option for
@@ -23,7 +23,7 @@
  Optionally provide a view controller for presetation, default is rootViewController of the key UIWindow
  Note: this operation will finishWithError: if the presentingViewController is already presenting
  */
-@property (weak, nonatomic, nullable) UIViewController *presentingViewController NS_AVAILABLE_IOS(8.0);
+	@property (weak, nonatomic, nullable) UIViewController *presentingViewController;
 
 /*
  should the alery show a cancel button

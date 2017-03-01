@@ -8,13 +8,9 @@
 
 #import "TWGAlertOperation.h"
 
-@interface TWGAlertOperation () <UIAlertViewDelegate>
+@interface TWGAlertOperation ()
 
 @property (strong, nonatomic) UIAlertController *alertController;
-
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-@property (strong, nonatomic) UIAlertView *alertView;
-#pragma clang diagnostic pop
 
 @end
 
@@ -31,12 +27,7 @@
 
 - (void)execute
 {
-    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
-        [self performSelectorOnMainThread:@selector(presentAlertController) withObject:nil waitUntilDone:YES];
-    }
-    else {
-        [self performSelectorOnMainThread:@selector(presentAlert) withObject:nil waitUntilDone:NO];
-    }
+    [self performSelectorOnMainThread:@selector(presentAlertController) withObject:nil waitUntilDone:YES];
 }
 
 - (NSString *)confirmText
@@ -55,7 +46,6 @@
     return _cancelText;
 }
 
-#pragma mark UIAlertController for iOS8 and above
 - (void)presentAlertController
 {
     if (self.presentingViewController.presentedViewController == nil) {
@@ -103,46 +93,11 @@
     return _presentingViewController;
 }
 
-#pragma mark UIAlertView for iOS7 and below
-- (void)presentAlert
-{
-    [self.alertView show];
-}
-
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-- (UIAlertView *)alertView
-{
-    if (_alertView == nil) {
-        _alertView = [[UIAlertView alloc] initWithTitle:self.alertTitle
-                                                message:self.alertMessage
-                                               delegate:self
-                                      cancelButtonTitle:(self.cancelable) ? self.cancelText : nil
-                                      otherButtonTitles:self.confirmText, nil];
-    }
-    return _alertView;
-}
-#pragma clang diagnostic pop
-
-#pragma mark UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == alertView.cancelButtonIndex) {
-        [self finishWithError:nil];
-    }
-    else {
-        [self finishWithResult:nil];
-    }
-}
-
 - (id)copyWithZone:(NSZone *)zone
 {
     TWGAlertOperation *operation = [[[self class] alloc] init];
 
-    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
-        operation.presentingViewController = self.presentingViewController;
-    }
-
+	operation.presentingViewController = self.presentingViewController;
     operation.delegate = self.delegate;
     operation.cancelable = self.cancelable;
     operation.confirmText = self.confirmText;
